@@ -13,6 +13,11 @@ public class DragableObject : MonoBehaviour, IDragable
     public float maxRotationSpeed = 1f;
     public float rotationDamping = 1f;
 
+    [Header("Scaling")]
+    public float scaleRate = 0.1f;
+    public float minScale = 0.1f;
+    public float maxScale = 10f;
+
     private Rigidbody rigidBody;
     private float defaultMovementDamping;
     private float defaultRotationDamping;
@@ -20,6 +25,7 @@ public class DragableObject : MonoBehaviour, IDragable
     private bool selected = false;
     private Vector3 targetPos = Vector3.zero;
     private float rotationInput = 0;
+    private float scaleInput = 0;
 
     private void OnValidate()
     {
@@ -43,6 +49,9 @@ public class DragableObject : MonoBehaviour, IDragable
 
             // rotation input
             rotationInput = Input.GetAxis("Horizontal");
+
+            // scale input
+            scaleInput = Input.GetAxis("Vertical");
         }
     }
 
@@ -58,10 +67,17 @@ public class DragableObject : MonoBehaviour, IDragable
             if (rigidBody.velocity.magnitude > maxDragSpeed)
                 rigidBody.velocity = rigidBody.velocity.normalized * maxDragSpeed;
 
+            // scaling
+            Vector3 targetScale = transform.localScale + Vector3.one * scaleInput * scaleRate;
+            targetScale = new Vector3(Mathf.Clamp(targetScale.x, minScale, maxScale),
+                                      Mathf.Clamp(targetScale.y, minScale, maxScale),
+                                      Mathf.Clamp(targetScale.z, minScale, maxScale));
+            transform.localScale = targetScale;
+
             // rotation            
             rigidBody.AddTorque(transform.forward * rotationInput * -rotationForce);
-            if (rigidBody.angularVelocity.magnitude > maxRotationSpeed)
-                rigidBody.angularVelocity = rigidBody.angularVelocity.normalized * maxRotationSpeed;
+            if (rigidBody.angularVelocity.magnitude > (maxRotationSpeed * transform.localScale.magnitude))
+                rigidBody.angularVelocity = rigidBody.angularVelocity.normalized * (maxRotationSpeed * transform.localScale.magnitude);
         }
     }
 
