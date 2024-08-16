@@ -98,4 +98,14 @@ public class DragableObject : MonoBehaviour, IDragable
             rigidBody.angularDrag = defaultRotationDamping;
         }
     }
+
+    public Vector3 GetPosition()
+    {
+        return transform.position;
+    }
+
+    public void SetPosition(Vector3 position)
+    {
+        transform.position = position;
+    }
 }
