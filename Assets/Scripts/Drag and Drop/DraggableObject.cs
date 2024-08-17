@@ -55,7 +55,7 @@ public class DraggableObject : MonoBehaviour, IDraggable
 
         rigidBody.interpolation = RigidbodyInterpolation.Interpolate;
         rigidBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        rigidBody.constraints = RigidbodyConstraints.None; //RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
     }
 
     private void Update()
@@ -130,7 +130,7 @@ public class DraggableObject : MonoBehaviour, IDraggable
         }
         else
         {
-            rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+            rigidBody.constraints = RigidbodyConstraints.None;//RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
         }
     }
 
