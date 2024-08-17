@@ -23,7 +23,7 @@ public class Receptacle : MonoBehaviour
         if (completed)
             return;
 
-        float distance = (targetDragable.GetPosition() - solutionPosition).magnitude;
+        float distance = (targetDragable.GetPosition() - transform.position - solutionPosition).magnitude;
         if (distance > magnetiseDistance)
             return;
 
@@ -36,19 +36,15 @@ public class Receptacle : MonoBehaviour
             return;
 
         completed = true;
-        //targetDragable.SetPosition(solutionPosition);
-        //targetDragable.SetRotation(solutionRotation);
-        //targetDragable.SetScale(solutionScale);
-        //targetDragable.Lock(true);
-        targetDragable.AnimateToSolution(solutionPosition, solutionRotation, solutionScale, magnetiseDuration);
+        targetDragable.AnimateToSolution(solutionPosition + transform.position, solutionRotation, solutionScale, magnetiseDuration);
 
-        //checkpoint.Complete();
+        checkpoint?.Complete();
         Debug.Log("CHECKPOINT COMPLETE");
     }
 
     public void SaveSolution()
     {
-        solutionPosition = targetDragable.transform.position;
+        solutionPosition = targetDragable.transform.position - transform.position;
         solutionRotation = targetDragable.transform.rotation;
         solutionScale = targetDragable.transform.localScale;
     }
