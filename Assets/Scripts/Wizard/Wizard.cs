@@ -9,8 +9,7 @@ public class Wizard : MonoBehaviour
     public Action<CheckPoint> CheckPointTrigger;
     public float time;
 
-    private Coroutine current;
-
+    public CheckPoint currentCheckPoint;
     private void Awake()
     {
         splineAnimate = GetComponent<SplineAnimate>();
@@ -20,6 +19,7 @@ public class Wizard : MonoBehaviour
     {
         if (collider.TryGetComponent<CheckPoint>(out CheckPoint checkPoint))
         {
+            currentCheckPoint = checkPoint;
             if (checkPoint.hasCompleted)
             {
                 CheckPointTrigger?.Invoke(checkPoint);
@@ -28,18 +28,33 @@ public class Wizard : MonoBehaviour
             }
             else
             {
-                splineAnimate.Pause();
-                current = StartCoroutine(ResetWizard(checkPoint));
+                StartCoroutine(ResetWizard(checkPoint));
             }
         }
     }
 
     private IEnumerator ResetWizard(CheckPoint checkPoint)
     {
+        checkPoint.OnComplete += OnOverTimeCheckPointCompleteEvent;
+        splineAnimate.Pause();
         yield return new WaitForSeconds(5f);
-        splineAnimate.ElapsedTime = time;
-        yield return new WaitForSeconds(1f);
-        current = null;
+
+        if (!checkPoint.hasCompleted)
+        {
+            splineAnimate.ElapsedTime = time;
+            //this is basically you losing here and resetting
+            yield return new WaitForSeconds(1f);
+            splineAnimate.Play();
+            yield break;
+        }
+
+        splineAnimate.Play();
+    }
+
+    private void OnOverTimeCheckPointCompleteEvent()
+    {
+        currentCheckPoint.OnComplete -= OnOverTimeCheckPointCompleteEvent;
+        StopAllCoroutines();
         splineAnimate.Play();
     }
 }
