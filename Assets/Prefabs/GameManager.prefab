@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 3450750325154372242}
-  dragSources: []
+  dragSourceObject: {fileID: 6666833568996417401}
   dragAudioClips: {fileID: 3896882051272355803}
 --- !u!1 &3806366378301147778
 GameObject:

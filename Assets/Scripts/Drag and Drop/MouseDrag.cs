@@ -12,6 +12,8 @@ public class MouseDrag : MonoBehaviour
             {
                 selectedDragable.SetSelected(false);
                 selectedDragable = null;
+
+                GameManager.Instance.audioSystem.PlayDragDeselected();
             }
         }
         else if (Input.GetMouseButtonDown(0))
@@ -32,6 +34,8 @@ public class MouseDrag : MonoBehaviour
                 dragable.SetSelected(true);
                 selectedDragable = dragable;
                 selectedDragable.OnLocked.AddListener(() => selectedDragable = null);
+
+                GameManager.Instance.audioSystem.PlayDragSelected();
             }
         }
     }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,8 @@ public class AudioSystem : MonoBehaviour
     public AudioSource musicSource;
 
     [Header("Drag")]
-    public List<AudioSource> dragSources = new List<AudioSource>();
+    public GameObject dragSourceObject;
+    private List<AudioSource> dragSources = new List<AudioSource>();
 
     public DraggableAudioClips dragAudioClips;
 
@@ -17,7 +17,7 @@ public class AudioSystem : MonoBehaviour
     {
         for (int i = 0; i < 10; i++) 
         {
-            dragSources.Add(gameObject.AddComponent<AudioSource>());
+            dragSources.Add(dragSourceObject.AddComponent<AudioSource>());
         }
     }
     public void PlayMusic()
