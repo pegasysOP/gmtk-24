@@ -14,7 +14,7 @@ public class GameManagerEditor : Editor
 
         if (GUILayout.Button("Start Game"))
         {
-            GameManager.Instance.StartGame?.Invoke();
+            GameManager.Instance.FireStartGameEvent();
         }
     }
 }
