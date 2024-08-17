@@ -167,6 +167,21 @@ MonoBehaviour:
   minScale: 0.1
   maxScale: 10
   impactForceThreshold: 5
+  rigidBody: {fileID: 229703479}
+  startPosition: {x: 46.089294, y: 0, z: -76.47032}
+  startRotation: {x: -0, y: 0.012404583, z: -0, w: 0.99992305}
+  startScale: {x: 2.5114, y: 2.5114, z: 2.5114}
+  defaultMovementDamping: 0
+  defaultRotationDamping: 0.05
+  selected: 0
+  locked: 0
+  targetPos: {x: 0, y: 0, z: 0}
+  rotationInput: 0
+  scaleInput: 0
+  onLocked:
+    m_PersistentCalls:
+      m_Calls: []
+    m_CallsDirty: 1
 --- !u!54 &229703479
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -235,7 +250,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 079d7c450ed79e5499baa24faf1dcb7e, type: 2}
+  - {fileID: 2100000, guid: 7f7acbece0f22034e98c0e0457e08bf1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5170,6 +5186,21 @@ MonoBehaviour:
   minScale: 0.1
   maxScale: 10
   impactForceThreshold: 5
+  rigidBody: {fileID: 843735684}
+  startPosition: {x: 56.14513, y: 0, z: -89.50763}
+  startRotation: {x: -0, y: 0.20225126, z: -0, w: 0.9793337}
+  startScale: {x: 2.5114, y: 2.5114, z: 2.5114}
+  defaultMovementDamping: 0
+  defaultRotationDamping: 0.05
+  selected: 0
+  locked: 0
+  targetPos: {x: 0, y: 0, z: 0}
+  rotationInput: 0
+  scaleInput: 0
+  onLocked:
+    m_PersistentCalls:
+      m_Calls: []
+    m_CallsDirty: 1
 --- !u!54 &843735684
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7255,6 +7286,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4007443435834966937, guid: f0d4aca5f28e7db48bd29a64c00c307d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 4687096324950402808, guid: f0d4aca5f28e7db48bd29a64c00c307d,
         type: 3}
       propertyPath: m_LocalPosition.x
