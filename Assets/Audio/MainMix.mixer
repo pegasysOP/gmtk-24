@@ -53,6 +53,7 @@ AudioMixerController:
   - guids:
     - efce9b7d974925b4b80c09ce27c8cc0b
     - b219e5c940355614cbf0b7cb8d2b705a
+    - d486ca9f7f54b9f4eabb294d16a00c92
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -67,6 +68,7 @@ AudioMixerGroupController:
   m_GroupID: efce9b7d974925b4b80c09ce27c8cc0b
   m_Children:
   - {fileID: -1936100959418583811}
+  - {fileID: 1894421175929023835}
   m_Volume: 496aaf256827b19409301058892ce5e5
   m_Pitch: 0cde826e7378ad245af53739b408ccb7
   m_Send: 00000000000000000000000000000000
@@ -99,5 +101,39 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 2b16531c3cf5d5e43b5f10b8d2fdd42c
-  m_FloatValues: {}
+  m_FloatValues:
+    a51747235d087e34b8eef44fd0acfd92: -26.404226
   m_TransitionOverrides: {}
+--- !u!243 &1894421175929023835
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Drag
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: d486ca9f7f54b9f4eabb294d16a00c92
+  m_Children: []
+  m_Volume: b12bda8a5285b9243bab3a772ca6e0de
+  m_Pitch: 3cc615026cc299b42becb41770316814
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 4523339507200971716}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &4523339507200971716
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: ec764209e5df68145a95ff2cbb7bf62e
+  m_EffectName: Attenuation
+  m_MixLevel: d3d59f19184cee441a1813da72e159a5
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
