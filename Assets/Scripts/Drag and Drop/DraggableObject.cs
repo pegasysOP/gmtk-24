@@ -193,6 +193,12 @@ public class DraggableObject : MonoBehaviour, IDraggable
     void OnCollisionEnter(Collision collision)
     {
         float impactMagnitude = collision.impulse.magnitude;
+        if (objectDust == null || floorDust == null)
+        {
+            Debug.Log("Paricle effect not assigned");
+            return;
+        }
+
         if (impactMagnitude > impactForceThreshold)
         {
             Instantiate(objectDust, collision.GetContact(0).point, Quaternion.identity);
