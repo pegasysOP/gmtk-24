@@ -22,6 +22,8 @@ public class DraggableObject : MonoBehaviour, IDraggable
 
     [Header("Impacts")]
     public float impactForceThreshold = 1f;
+    public GameObject objectDust;
+    public GameObject floorDust;
 
     private Rigidbody rigidBody;
     private Vector3 startPosition;
@@ -193,8 +195,12 @@ public class DraggableObject : MonoBehaviour, IDraggable
         float impactMagnitude = collision.impulse.magnitude;
         if (impactMagnitude > impactForceThreshold)
         {
-            Debug.Log("Impact detected");
-            // do something with the impact
+            Instantiate(objectDust, collision.GetContact(0).point, Quaternion.identity);
+
+            if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                Instantiate(floorDust, collision.GetContact(0).point, Quaternion.identity);
+            }
         }
     }
 }

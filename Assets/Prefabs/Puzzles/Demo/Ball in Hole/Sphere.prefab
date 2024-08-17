@@ -156,3 +156,7 @@ MonoBehaviour:
   minScale: 0.1
   maxScale: 10
   impactForceThreshold: 1
+  objectDust: {fileID: 3920769642762448583, guid: 5bd58c4ceb0b2a74da8c4bbce00346c7,
+    type: 3}
+  floorDust: {fileID: 4723779749414595416, guid: 308a3070a61b6504f8d7a177b0f7b21e,
+    type: 3}
