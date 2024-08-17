@@ -35,6 +35,11 @@ public class Wizard : MonoBehaviour
 
     private void Update()
     {
+        if (wizardsMagicBeam == null)
+        {
+            return;
+        }
+
         IDraggable draggable = GameManager.Instance.mouseDrag.GetDraggable();
         if (draggable != null)
         {
@@ -42,7 +47,7 @@ public class Wizard : MonoBehaviour
             wizardsMagicBeam.SetActive(true);
         }
         else
-        {
+        {            
             wizardsMagicBeam.SetActive(false);
         }
     }
