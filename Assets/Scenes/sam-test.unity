@@ -1213,7 +1213,7 @@ GameObject:
   - component: {fileID: 2102456870}
   - component: {fileID: 2102456871}
   m_Layer: 0
-  m_Name: Recepticle
+  m_Name: Receptacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
