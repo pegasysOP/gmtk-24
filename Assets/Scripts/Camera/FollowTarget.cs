@@ -8,15 +8,15 @@ public class FollowTarget : MonoBehaviour
     public Vector3 positionOffset;
 
     /// <summary>
-    /// set to false if using cinemachine cam as position is set through "Body" fields
+    /// set to true if using cinemachine cam as position is set through "Body" fields
     /// </summary>
-    public bool updatePosition;
+    public bool avoidPositionUpdate;
     [Range(-45f, 45f)]
     public float rotateOffset;
 
     private void LateUpdate()
     {
-        if (updatePosition)
+        if (avoidPositionUpdate)
         {
             rotatePoint.position = new Vector3(rotatePoint.position.x, target.position.y, rotatePoint.position.z);
             Vector3 direction = (target.position - rotatePoint.position).normalized;
