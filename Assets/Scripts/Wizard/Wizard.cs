@@ -15,6 +15,21 @@ public class Wizard : MonoBehaviour
         splineAnimate = GetComponent<SplineAnimate>();
     }
 
+    private void Start()
+    {
+        GameManager.Instance.StartGame += OnStartGameEvent;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.StartGame -= OnStartGameEvent;
+    }
+
+    private void OnStartGameEvent()
+    {
+        splineAnimate.Play();
+    }
+
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.TryGetComponent<CheckPoint>(out CheckPoint checkPoint))
