@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent (typeof(Rigidbody))]
-public class DragableObject : MonoBehaviour, IDragable
+public class DraggableObject : MonoBehaviour, IDraggable
 {
     [Header("Movement")]
     public float dragForce = 500f;

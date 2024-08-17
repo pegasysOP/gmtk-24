@@ -11,7 +11,7 @@ public struct Solution
 
 public class Receptacle : MonoBehaviour
 {
-    public DragableObject targetDragable;
+    public DraggableObject targetDraggable;
     public CheckPoint checkpoint;
 
     [Header("Magnetise")]
@@ -36,20 +36,20 @@ public class Receptacle : MonoBehaviour
 
         foreach (Solution solution in solutions)
         {
-            float distance = (targetDragable.GetPosition() - transform.position - solution.Position).magnitude;
+            float distance = (targetDraggable.GetPosition() - transform.position - solution.Position).magnitude;
             if (distance > magnetiseDistance)
                 continue;
 
-            float angleBetween = Quaternion.Angle(targetDragable.GetRotation(), solution.Rotation);
+            float angleBetween = Quaternion.Angle(targetDraggable.GetRotation(), solution.Rotation);
             if (angleBetween > magnetiseRotation)
                 continue;
 
-            float scaleDif = (targetDragable.GetScale() - solution.Scale).magnitude;
+            float scaleDif = (targetDraggable.GetScale() - solution.Scale).magnitude;
             if (scaleDif > magnetiseScale)
                 continue;
 
             completed = true;
-            targetDragable.AnimateToSolution(solution.Position + transform.position, solution.Rotation, solution.Scale, magnetiseDuration);
+            targetDraggable.AnimateToSolution(solution.Position + transform.position, solution.Rotation, solution.Scale, magnetiseDuration);
 
             checkpoint?.Complete();
             Debug.Log("CHECKPOINT COMPLETE");
@@ -67,9 +67,9 @@ public class Receptacle : MonoBehaviour
     {
         Solution newSolution = new Solution();
 
-        newSolution.Position = targetDragable.transform.position - transform.position;
-        newSolution.Rotation = targetDragable.transform.rotation;
-        newSolution.Scale = targetDragable.transform.localScale;
+        newSolution.Position = targetDraggable.transform.position - transform.position;
+        newSolution.Rotation = targetDraggable.transform.rotation;
+        newSolution.Scale = targetDraggable.transform.localScale;
 
         solutions.Add(newSolution);
     }

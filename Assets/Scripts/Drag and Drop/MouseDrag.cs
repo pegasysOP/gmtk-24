@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class MouseDrag : MonoBehaviour
 {
-    private IDragable selectedDragable;
+    private IDraggable selectedDraggable;
 
     private void Update()
     {
         if (Input.GetMouseButtonUp(0))
         {
-            if (selectedDragable != null)
+            if (selectedDraggable != null)
             {
-                selectedDragable.SetSelected(false);
-                selectedDragable = null;
+                selectedDraggable.SetSelected(false);
+                selectedDraggable = null;
 
                 GameManager.Instance.audioSystem.PlayDragDeselected();
             }
@@ -21,19 +21,19 @@ public class MouseDrag : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                IDragable dragable = hit.collider.GetComponent<IDragable>() ?? hit.collider.GetComponent<IDragableChild>()?.GetDragableParent();
-                if (dragable == null || dragable.IsLocked())
+                IDraggable draggable = hit.collider.GetComponent<IDraggable>() ?? hit.collider.GetComponent<IDraggableChild>()?.GetDraggableParent();
+                if (draggable == null || draggable.IsLocked())
                     return;
 
-                if (selectedDragable != null)
+                if (selectedDraggable != null)
                 {
-                    selectedDragable.SetSelected(false);
-                    selectedDragable.OnLocked.RemoveListener(() => selectedDragable = null);
+                    selectedDraggable.SetSelected(false);
+                    selectedDraggable.OnLocked.RemoveListener(() => selectedDraggable = null);
                 }                
 
-                dragable.SetSelected(true);
-                selectedDragable = dragable;
-                selectedDragable.OnLocked.AddListener(() => selectedDragable = null);
+                draggable.SetSelected(true);
+                selectedDraggable = draggable;
+                selectedDraggable.OnLocked.AddListener(() => selectedDraggable = null);
 
                 GameManager.Instance.audioSystem.PlayDragSelected();
             }

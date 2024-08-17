@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public interface IDragable
+public interface IDraggable
 {
     public void SetSelected(bool selected);
     public void Lock(bool locked);
