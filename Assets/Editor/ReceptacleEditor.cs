@@ -10,9 +10,16 @@ public class ReceptacleEditor : Editor
 
         Receptacle receptacle = target as Receptacle;
 
-        if (GUILayout.Button("Save Solution"))
+        if (GUILayout.Button("Add Solution"))
         {
-            receptacle.SaveSolution();
+            receptacle.AddSolution();
+            EditorUtility.SetDirty(receptacle);
+        }
+
+        if (GUILayout.Button("Clear Solutions"))
+        {
+            receptacle.ClearSolutions();
+            EditorUtility.SetDirty(receptacle);
         }
     }
 }

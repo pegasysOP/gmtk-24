@@ -321,3 +321,4 @@ MonoBehaviour:
   scaleRate: 0.1
   minScale: 0.1
   maxScale: 10
+  impactForceThreshold: 1
