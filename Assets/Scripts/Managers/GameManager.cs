@@ -9,10 +9,18 @@ public class GameManager : MonoBehaviour
 
     public AudioSystem audioSystem;
 
+    [SerializeField]
+    private Transform cameraRotateAround;
+
     public void Awake()
     {
         if (Instance == null)
             Instance = this;
+    }
+
+    public Transform GetCameraRotatePoint()
+    {
+        return cameraRotateAround; 
     }
 
     private void Start()
