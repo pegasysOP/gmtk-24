@@ -5,13 +5,17 @@ public class Receptacle : MonoBehaviour
     public DragableObject targetDragable;
     public CheckPoint checkpoint;
 
+    [Header("Magnetise")]
     public float magnetiseDistance = 0.5f;
     public float magnetiseRotation = 10f;
     public float magnetiseScale = 0.2f;
+    public float magnetiseDuration = 0.5f;
 
+    [Header("Solution")]
     [SerializeField] private Vector3 solutionPosition;
     [SerializeField] private Quaternion solutionRotation;
     [SerializeField] private Vector3 solutionScale;
+
     private bool completed = false;
 
     private void Update()
@@ -32,10 +36,11 @@ public class Receptacle : MonoBehaviour
             return;
 
         completed = true;
-        targetDragable.SetPosition(solutionPosition);
-        targetDragable.SetRotation(solutionRotation);
-        targetDragable.SetScale(solutionScale);
-        targetDragable.Lock(true);
+        //targetDragable.SetPosition(solutionPosition);
+        //targetDragable.SetRotation(solutionRotation);
+        //targetDragable.SetScale(solutionScale);
+        //targetDragable.Lock(true);
+        targetDragable.AnimateToSolution(solutionPosition, solutionRotation, solutionScale, magnetiseDuration);
 
         //checkpoint.Complete();
         Debug.Log("CHECKPOINT COMPLETE");

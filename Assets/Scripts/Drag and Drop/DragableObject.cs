@@ -1,4 +1,6 @@
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent (typeof(Rigidbody))]
 public class DragableObject : MonoBehaviour, IDragable
@@ -32,6 +34,9 @@ public class DragableObject : MonoBehaviour, IDragable
     private float rotationInput = 0;
     private float scaleInput = 0;
 
+    private UnityEvent onLocked = new UnityEvent();
+    public UnityEvent OnLocked { get { return onLocked; } }
+
     private void OnValidate()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -45,6 +50,7 @@ public class DragableObject : MonoBehaviour, IDragable
 
         rigidBody.interpolation = RigidbodyInterpolation.Interpolate;
         rigidBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
     }
 
     private void Update()
@@ -110,10 +116,17 @@ public class DragableObject : MonoBehaviour, IDragable
     public void Lock(bool locked)
     {
         this.locked = locked;
-        this.selected = false;
 
-        rigidBody.constraints = locked ? RigidbodyConstraints.FreezeAll : RigidbodyConstraints.None;
-
+        if (locked)
+        {
+            OnLocked?.Invoke();
+            SetSelected(false);
+            rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+        }
+        else
+        {
+            rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        }
     }
 
     public bool IsLocked()
@@ -126,6 +139,9 @@ public class DragableObject : MonoBehaviour, IDragable
         SetPosition(startPosition);
         SetRotation(startRotation);
         SetScale(startScale);
+
+        Lock(false);
+        SetSelected(false);
     }
 
     public Vector3 GetPosition()
@@ -156,5 +172,16 @@ public class DragableObject : MonoBehaviour, IDragable
     public void SetScale(Vector3 scale)
     {
         transform.localScale = scale;
+    }
+
+    public void AnimateToSolution(Vector3 position, Quaternion rotation, Vector3 scale, float duration)
+    {
+        Lock(true);
+
+        Sequence sequence = DOTween.Sequence();
+        sequence.Insert(0f, transform.DOMove(position, duration));
+        sequence.Insert(0f, transform.DORotateQuaternion(rotation, duration));
+        sequence.Insert(0f, transform.DOScale(scale, duration));
+        sequence.Play();
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MouseDrag : MonoBehaviour
 {
-    IDragable selectedDragable;
+    private IDragable selectedDragable;
 
     private void Update()
     {
@@ -16,22 +16,23 @@ public class MouseDrag : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0))
         {
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                IDragable dragable = hit.collider.gameObject.GetComponent<IDragable>();
-                if (dragable != null)
+                IDragable dragable = hit.collider.GetComponent<IDragable>() ?? hit.collider.GetComponent<IDragableChild>()?.GetDragableParent();
+                if (dragable == null || dragable.IsLocked())
+                    return;
+
+                if (selectedDragable != null)
                 {
-                    if (dragable.IsLocked())
-                        return;
+                    selectedDragable.SetSelected(false);
+                    selectedDragable.OnLocked.RemoveListener(() => selectedDragable = null);
+                }                
 
-                    if(selectedDragable != null)
-                        selectedDragable.SetSelected(false);
-
-                    dragable.SetSelected(true);
-                    selectedDragable = dragable;
-                }
+                dragable.SetSelected(true);
+                selectedDragable = dragable;
+                selectedDragable.OnLocked.AddListener(() => selectedDragable = null);
             }
         }
-        
     }
 }
