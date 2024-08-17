@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2320b963e93fcad4aa4fce391ad4785e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseDrag: {fileID: 5051530784396275700}
   audioSystem: {fileID: 2737860649262548571}
   cameraRotateAround: {fileID: 0}
 --- !u!1 &6666833568996417401

@@ -10,6 +10,9 @@ public class Wizard : MonoBehaviour
     public float time;
 
     public CheckPoint currentCheckPoint;
+
+    public GameObject wizardsMagicBeam;
+
     private void Awake()
     {
         splineAnimate = GetComponent<SplineAnimate>();
@@ -28,6 +31,20 @@ public class Wizard : MonoBehaviour
     private void OnStartGameEvent()
     {
         splineAnimate.Play();
+    }
+
+    private void Update()
+    {
+        IDraggable draggable = GameManager.Instance.mouseDrag.GetDraggable();
+        if (draggable != null)
+        {
+            wizardsMagicBeam.transform.LookAt(draggable.GetPosition());
+            wizardsMagicBeam.SetActive(true);
+        }
+        else
+        {
+            wizardsMagicBeam.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider collider)

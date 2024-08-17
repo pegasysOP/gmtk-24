@@ -39,4 +39,9 @@ public class MouseDrag : MonoBehaviour
             }
         }
     }
+
+    public IDraggable GetDraggable()
+    {
+        return selectedDraggable; 
+    }
 }

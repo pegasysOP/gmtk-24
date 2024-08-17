@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public Action StartGame;
     public Action EndGame;
 
+    public MouseDrag mouseDrag;
     public AudioSystem audioSystem;
 
     [SerializeField]
