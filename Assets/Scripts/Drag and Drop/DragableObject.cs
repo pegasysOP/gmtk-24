@@ -11,7 +11,7 @@ public class DragableObject : MonoBehaviour, IDragable
     public float movementDamping = 15f;
 
     [Header("Rotation")]
-    public float rotationForce = 100f;
+    public float rotationForce = 1001f;
     public float maxRotationSpeed = 1f;
     public float rotationDamping = 1f;
 
@@ -19,6 +19,9 @@ public class DragableObject : MonoBehaviour, IDragable
     public float scaleRate = 0.1f;
     public float minScale = 0.1f;
     public float maxScale = 10f;
+
+    [Header("Impacts")]
+    public float impactForceThreshold = 5f;
 
     private Rigidbody rigidBody;
     private Vector3 startPosition;
@@ -183,5 +186,15 @@ public class DragableObject : MonoBehaviour, IDragable
         sequence.Insert(0f, transform.DORotateQuaternion(rotation, duration));
         sequence.Insert(0f, transform.DOScale(scale, duration));
         sequence.Play();
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        float impactMagnitude = collision.impulse.magnitude;
+        if (impactMagnitude > impactForceThreshold)
+        {
+            Debug.Log("Impact detected");
+            // do something with the impact
+        }
     }
 }
