@@ -7,15 +7,24 @@ public class FollowTarget : MonoBehaviour
 
     public Vector3 positionOffset;
 
+    /// <summary>
+    /// set to false if using cinemachine cam as position is set through "Body" fields
+    /// </summary>
+    public bool updatePosition;
     [Range(-45f, 45f)]
     public float rotateOffset;
 
     private void LateUpdate()
     {
-        rotatePoint.position = new Vector3(rotatePoint.position.x, target.position.y, rotatePoint.position.z);
-        Vector3 direction = (target.position - rotatePoint.position).normalized;
-        transform.position = target.position + direction * positionOffset.z;
-        transform.position += new Vector3(positionOffset.x, positionOffset.y, 0);
-        transform.LookAt(rotatePoint);
+        if (updatePosition)
+        {
+            rotatePoint.position = new Vector3(rotatePoint.position.x, target.position.y, rotatePoint.position.z);
+            Vector3 direction = (target.position - rotatePoint.position).normalized;
+            transform.position = target.position + direction * positionOffset.z;
+            transform.position += new Vector3(positionOffset.x, positionOffset.y, 0);
+        }
+
+        Vector3 offsetLookat = new Vector3(rotatePoint.position.x, this.transform.position.y, rotatePoint.position.z);
+        transform.LookAt(offsetLookat);
     }
 }
