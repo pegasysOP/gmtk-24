@@ -209,4 +209,9 @@ public class DraggableObject : MonoBehaviour, IDraggable
             }
         }
     }
+
+    public MeshRenderer GetRenderer()
+    {
+        return gameObject.GetComponent<MeshRenderer>();
+    }
 }

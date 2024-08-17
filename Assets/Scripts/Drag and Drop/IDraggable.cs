@@ -13,6 +13,8 @@ public interface IDraggable
     public Quaternion GetRotation();
     public Vector3 GetScale();
 
+    public MeshRenderer GetRenderer();
+
     public void SetPosition(Vector3 position);
     public void SetRotation(Quaternion rotation);
     public void SetScale(Vector3 scale);
