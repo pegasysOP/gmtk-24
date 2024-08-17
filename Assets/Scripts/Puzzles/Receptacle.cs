@@ -7,7 +7,7 @@ public class Receptacle : MonoBehaviour
 
     [Header("Magnetise")]
     public float magnetiseDistance = 0.5f;
-    public float magnetiseRotation = 10f;
+    [Range(0, 360)] public float magnetiseRotation = 10f;
     public float magnetiseScale = 0.2f;
     public float magnetiseDuration = 0.5f;
 
