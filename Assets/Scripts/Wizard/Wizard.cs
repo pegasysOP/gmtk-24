@@ -68,6 +68,11 @@ public class Wizard : MonoBehaviour
                 StartCoroutine(ResetWizard(checkPoint));
             }
         }
+
+        if (collider.TryGetComponent<TriggerCollider>(out TriggerCollider trigger))
+        {
+            trigger.Trigger();
+        }
     }
 
     private IEnumerator ResetWizard(CheckPoint checkPoint)

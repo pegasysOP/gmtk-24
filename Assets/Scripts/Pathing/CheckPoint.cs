@@ -11,4 +11,9 @@ public class CheckPoint : MonoBehaviour
         hasCompleted = true;
         OnComplete?.Invoke();
     }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(gameObject.transform.position, new Vector3(1f,1f,0.2f));
+    }
 }
