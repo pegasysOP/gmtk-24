@@ -263,9 +263,10 @@ MonoBehaviour:
   magnetiseRotation: 360
   magnetiseScale: 0.2
   magnetiseDuration: 0.5
-  solutionPosition: {x: 0, y: 0.40000004, z: 0}
-  solutionRotation: {x: -0, y: -0, z: -0, w: 1}
-  solutionScale: {x: 1, y: 1, z: 1}
+  solutions:
+  - Position: {x: 0, y: 0.39999998, z: 0}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
 --- !u!1 &7779436617823752208
 GameObject:
   m_ObjectHideFlags: 0

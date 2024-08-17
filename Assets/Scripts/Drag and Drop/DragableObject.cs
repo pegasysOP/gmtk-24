@@ -21,7 +21,7 @@ public class DragableObject : MonoBehaviour, IDragable
     public float maxScale = 10f;
 
     [Header("Impacts")]
-    public float impactForceThreshold = 5f;
+    public float impactForceThreshold = 1f;
 
     private Rigidbody rigidBody;
     private Vector3 startPosition;
