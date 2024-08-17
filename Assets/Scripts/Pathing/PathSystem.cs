@@ -5,6 +5,7 @@ using UnityEngine.Splines;
 public class PathSystem : MonoBehaviour
 {
     public static PathSystem Instance;
+    private SplineContainer _splineContainer;
 
     public List<CheckPoint> points = new List<CheckPoint>();
     public Wizard wizard;
@@ -29,6 +30,13 @@ public class PathSystem : MonoBehaviour
     private void Start()
     {
         wizard.CheckPointTrigger += CheckPointReached;
+
+        _splineContainer = gameObject.GetComponent<SplineContainer>();
+    }
+
+    public SplineContainer GetSpline()
+    {
+        return _splineContainer; 
     }
 
     private void CheckPointReached(CheckPoint checkPoint)
