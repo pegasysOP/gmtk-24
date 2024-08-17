@@ -5,6 +5,7 @@ public interface IDragable
     public void SetSelected(bool selected);
     public void Lock(bool locked);
     public bool IsLocked();
+    public void Reset();
 
     public Vector3 GetPosition();
     public Quaternion GetRotation();

@@ -19,6 +19,9 @@ public class DragableObject : MonoBehaviour, IDragable
     public float maxScale = 10f;
 
     private Rigidbody rigidBody;
+    private Vector3 startPosition;
+    private Quaternion startRotation;
+    private Vector3 startScale;
     private float defaultMovementDamping;
     private float defaultRotationDamping;
 
@@ -32,6 +35,10 @@ public class DragableObject : MonoBehaviour, IDragable
     private void OnValidate()
     {
         rigidBody = GetComponent<Rigidbody>();
+
+        startPosition = transform.position;
+        startRotation = transform.rotation;
+        startScale = transform.localScale;
 
         defaultMovementDamping = rigidBody.drag;
         defaultRotationDamping = rigidBody.angularDrag;
@@ -112,6 +119,13 @@ public class DragableObject : MonoBehaviour, IDragable
     public bool IsLocked()
     {
         return locked;
+    }
+
+    public void Reset()
+    {
+        SetPosition(startPosition);
+        SetRotation(startRotation);
+        SetScale(startScale);
     }
 
     public Vector3 GetPosition()
