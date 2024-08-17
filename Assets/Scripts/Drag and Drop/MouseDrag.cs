@@ -21,6 +21,9 @@ public class MouseDrag : MonoBehaviour
                 IDragable dragable = hit.collider.gameObject.GetComponent<IDragable>();
                 if (dragable != null)
                 {
+                    if (dragable.IsLocked())
+                        return;
+
                     if(selectedDragable != null)
                         selectedDragable.SetSelected(false);
 
