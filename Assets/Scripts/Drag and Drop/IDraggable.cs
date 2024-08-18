@@ -6,7 +6,7 @@ public interface IDraggable
     public void SetSelected(bool selected);
     public void Lock(bool locked);
     public bool IsLocked();
-    public void Reset();
+    public void DoReset();
     public UnityEvent OnLocked { get; }
 
     public Vector3 GetPosition();
