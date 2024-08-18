@@ -14,6 +14,8 @@ public class Wizard : MonoBehaviour
 
     public GameObject wizardsMagicBeam;
 
+    public Animator animator;
+
     private void Awake()
     {
         splineAnimate = GetComponent<SplineAnimate>();
@@ -22,6 +24,7 @@ public class Wizard : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.StartGame += OnStartGameEvent;
+        animator = GetComponent<Animator>();
     }
 
     private void OnDestroy()
@@ -76,10 +79,15 @@ public class Wizard : MonoBehaviour
         }
     }
 
+    public bool IsWalking()
+    {
+        return splineAnimate.IsPlaying;
+    }
+
     private IEnumerator ResetWizard(CheckPoint checkPoint)
     {
         checkPoint.OnComplete += OnOverTimeCheckPointCompleteEvent;
-        splineAnimate.Pause();
+        WizardPause();
         yield return new WaitForSeconds(5f);
 
         if (!checkPoint.hasCompleted)
@@ -95,10 +103,19 @@ public class Wizard : MonoBehaviour
         splineAnimate.Play();
     }
 
+    private void WizardPause()
+    {
+        splineAnimate.Pause();
+        animator.SetTrigger("Angry");
+        Debug.Log($"Wizard is getting angry. Hurry up.");
+    }
+
     private void OnOverTimeCheckPointCompleteEvent()
     {
         currentCheckPoint.OnComplete -= OnOverTimeCheckPointCompleteEvent;
         StopAllCoroutines();
+        animator.SetTrigger("Walking");
+        Debug.Log($"Wizard starts to move again.");
         splineAnimate.Play();
     }
 }
