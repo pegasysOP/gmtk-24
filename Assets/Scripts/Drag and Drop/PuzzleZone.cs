@@ -17,6 +17,7 @@ public class PuzzleZone : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
         boxCollider.isTrigger = true;
         boxCollider.size = new Vector3(width, height, 0f);
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         transform.eulerAngles = new Vector3(0f, angle, 0f);
 
         plane = new Plane(transform.forward, transform.position);
@@ -40,9 +41,16 @@ public class PuzzleZone : MonoBehaviour
 
         // map velocity onto plane
         rigidbody.velocity = Vector3.ProjectOnPlane(rigidbody.velocity, plane.normal);
+        //rigidbody.angularVelocity = Vector3.ProjectOnPlane(rigidbody.angularVelocity, plane.normal);
 
         // wait till physics has been calculated
         yield return new WaitForFixedUpdate();
+
+        // lock rotation
+        Quaternion alignToPlaneNormal = Quaternion.FromToRotation(Vector3.forward, plane.normal);
+        Quaternion localRotation = Quaternion.Inverse(alignToPlaneNormal) * rigidbody.transform.rotation;
+        localRotation = Quaternion.Euler(0, 0, localRotation.eulerAngles.z);
+        rigidbody.transform.rotation = alignToPlaneNormal * localRotation;
 
         // move to closest position            
         Vector3 closestPoint = boxCollider.ClosestPoint(rigidbody.position);

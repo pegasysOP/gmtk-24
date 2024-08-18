@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 980434276}
   - component: {fileID: 980434278}
   - component: {fileID: 980434277}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Puzzle Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,67 +679,13 @@ GameObject:
   - component: {fileID: 2029665785}
   - component: {fileID: 2029665784}
   - component: {fileID: 2029665783}
-  - component: {fileID: 2029665782}
-  - component: {fileID: 2029665781}
   m_Layer: 0
   m_Name: Cuboid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &2029665781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2029665780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b2423aaf0755e428e906700743c77e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  puzzleZone: {fileID: 0}
-  dragForce: 500
-  maxDragSpeed: 20
-  movementDamping: 15
-  rotationForce: 100
-  maxRotationSpeed: 1
-  rotationDamping: 1
-  scaleRate: 0.1
-  minScale: 0.1
-  maxScale: 10
-  impactForceThreshold: 5
-  objectDust: {fileID: 0}
-  floorDust: {fileID: 0}
---- !u!54 &2029665782
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2029665780}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 1
+  m_IsActive: 1
 --- !u!65 &2029665783
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -819,13 +765,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029665780}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.100562796, w: 0.99493074}
-  m_LocalPosition: {x: 3.656, y: 3.642, z: 0}
+  m_LocalRotation: {x: -0.057401184, y: 0.40965837, z: -0.30420017, w: 0.8581069}
+  m_LocalPosition: {x: 2.05, y: 0.01, z: 2.07}
   m_LocalScale: {x: 1, y: 1.9912, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -11.543}
+  m_LocalEulerAnglesHint: {x: 8.669, y: 48.289, z: -35.147}
 --- !u!1001 &1441204824365954430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -852,22 +798,22 @@ PrefabInstance:
     - target: {fileID: 7102172561359910906, guid: ff11a7728645eea43bdf1785b9fd00ac,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.3883391
+      value: 0.19488366
       objectReference: {fileID: 0}
     - target: {fileID: 7102172561359910906, guid: ff11a7728645eea43bdf1785b9fd00ac,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.7949547
       objectReference: {fileID: 0}
     - target: {fileID: 7102172561359910906, guid: ff11a7728645eea43bdf1785b9fd00ac,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.32887474
       objectReference: {fileID: 0}
     - target: {fileID: 7102172561359910906, guid: ff11a7728645eea43bdf1785b9fd00ac,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.92151654
+      value: 0.47107196
       objectReference: {fileID: 0}
     - target: {fileID: 7102172561359910906, guid: ff11a7728645eea43bdf1785b9fd00ac,
         type: 3}
@@ -877,13 +823,18 @@ PrefabInstance:
     - target: {fileID: 7102172561359910906, guid: ff11a7728645eea43bdf1785b9fd00ac,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 838.7
       objectReference: {fileID: 0}
     - target: {fileID: 7102172561359910906, guid: ff11a7728645eea43bdf1785b9fd00ac,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 134.298
+      value: 135.05
       objectReference: {fileID: 0}
+    - target: {fileID: 7495016927083671089, guid: ff11a7728645eea43bdf1785b9fd00ac,
+        type: 3}
+      propertyPath: puzzleZone
+      value: 
+      objectReference: {fileID: 980434277}
     - target: {fileID: 7574697869611594645, guid: ff11a7728645eea43bdf1785b9fd00ac,
         type: 3}
       propertyPath: m_Name
@@ -892,7 +843,7 @@ PrefabInstance:
     - target: {fileID: 7574697869611594645, guid: ff11a7728645eea43bdf1785b9fd00ac,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1134,6 +1085,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479333787022456761, guid: 4376d46e47ad99a4db71446eeafcaeed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5556424148186660978, guid: 4376d46e47ad99a4db71446eeafcaeed,
         type: 3}
