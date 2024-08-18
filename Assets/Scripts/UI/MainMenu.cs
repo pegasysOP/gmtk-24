@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +10,10 @@ public class MainMenu : MonoBehaviour
 
     public Slider volumeSlider;
 
+    public GameObject menuContainer;
+    public TextMeshProUGUI startButtonText;
+    protected bool isInTitleMenu;
+
     private void Awake()
     {
         volumeSlider.value = PlayerPrefs.GetFloat(MasterVolumeKey, 0.5f);   
@@ -15,9 +21,116 @@ public class MainMenu : MonoBehaviour
         volumeSlider.onValueChanged.AddListener(OnVolumeValueChanged);
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            if (IsInGameCam())
+            {
+                // checks if menu container game object is open
+                SetMenu(menuContainer.activeInHierarchy);
+            }
+            else
+            {
+                Debug.Log("Ignoring ESC as not in game camera");
+            }
+        }
+    }
+
+    private bool IsInGameCam()
+    {
+        GameManager gameManager = GameManager.Instance;
+        if (gameManager == null)
+        {
+            Debug.Log("Game manager is null");
+            return false;
+        }
+
+        CameraMan cameraMan = gameManager.cameraMan;
+        if (cameraMan == null)
+        {
+            Debug.Log("Camera man is null");
+            return false;
+        }
+
+        if (cameraMan.IsVirtualCameraActive(cameraMan.gameVirtualCamera) || cameraMan.IsVirtualCameraActive(cameraMan.noInputGameVirtualCamera))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private void SetMenu(bool isMenuOpen)
+    {
+        if (isMenuOpen)
+        {
+            // close menu
+            ResumeGame();
+        }
+        else
+        {
+            DisplayMenu();
+        }
+    }
+
+    private void DisplayMenu()
+    {
+        // pause timescale
+        Time.timeScale = 0f;
+
+        // show buttons and menu UI
+        menuContainer.SetActive(true);
+
+        isInTitleMenu = true;
+    }
+
+    private void ResumeGame()
+    {
+        // reset timescale to normal
+        Time.timeScale = 1f;
+
+        // hide pause UI
+        menuContainer.SetActive(false);
+
+        isInTitleMenu = false;
+    }
+
     public void OnStartClicked()
     {
-        SceneManager.LoadScene("Main");
+        // hack to not break other things 
+        if (SceneManager.GetActiveScene().name == "harry-test chew")
+        {
+            GameManager gameManager = GameManager.Instance;
+            if (gameManager == null)
+            {
+                Debug.Log("Game manager is null");
+                return;
+            }
+
+            CameraMan cameraMan = gameManager.cameraMan;
+            if (cameraMan == null)
+            {
+                Debug.Log("Camera man is null");
+            }
+
+            if (cameraMan.IsVirtualCameraActive(cameraMan.mainMenuVirtualCamera))
+            {
+                cameraMan.TransitionFromMenuToIntro();
+            }
+            else if (cameraMan.IsVirtualCameraActive(cameraMan.gameVirtualCamera) || cameraMan.IsVirtualCameraActive(cameraMan.noInputGameVirtualCamera))
+            {
+                ResumeGame();
+            }
+            else
+            {
+                Debug.Log("No handling for start click");
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene("Main");
+        }
         Debug.Log("START");
     }
 

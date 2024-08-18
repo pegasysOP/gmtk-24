@@ -1,29 +1,124 @@
 ﻿using Cinemachine;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class CameraMan : MonoBehaviour
 {
     public CinemachineBrain brain;
+    public CinemachineVirtualCamera mainMenuVirtualCamera;
+    public CinemachineVirtualCamera flyThroughVirtualCamera;
     public CinemachineVirtualCamera gameVirtualCamera;
     public CinemachineVirtualCamera noInputGameVirtualCamera;
 
-    private bool allowInput = true;
+    public GameObject introGameObj;
+    public Animation introCamAnim;
 
-    public void Update()
+    private bool allowInput = true;
+    protected bool inMainMenu = true;
+
+    public delegate void CameraTransition(string newCameraName, string previousCameraName);
+    public static event CameraTransition OnCameraTransition;
+
+    public void Start()
     {
-        if (Input.GetKeyUp(KeyCode.B))
+        //CinemachineCore.CameraCutEvent.AddListener(OnCameraUpdated);
+        brain.m_CameraActivatedEvent.AddListener(OnCameraActivated);
+    }
+
+    private void OnCameraActivated(ICinemachineCamera newCam, ICinemachineCamera previousCam)
+    {
+        Debug.Log("cam 1: " + newCam.Name + " cam 2:" + previousCam.Name);
+        // Camera has changed
+        //gameVirtualCamera = currentCamera;
+        if (OnCameraTransition != null)
         {
-            EnableCameraInputReading(allowInput);
-            allowInput = !allowInput;
+            Debug.Log("event fired with new cam: " + newCam.Name);
+            OnCameraTransition(newCam.Name, previousCam.Name);
         }
     }
 
-    public void EnableCameraInputReading(bool canReadInput)
+    //private void OnCameraUpdated(CinemachineBrain brain)
+    //{
+    //    // Get the currently active virtual camera
+    //    CinemachineVirtualCamera currentCamera = brain.ActiveVirtualCamera as CinemachineVirtualCamera;
+    //    Debug.Log("cut camera changed to: " + currentCamera.Name);
+
+    //    if (currentCamera.name != gameVirtualCamera.name)
+    //    {
+    //        // Camera has changed
+    //        gameVirtualCamera = currentCamera;
+    //        if (OnCameraTransition != null)
+    //        {
+    //            Debug.Log("event fired with cam: " + currentCamera.Name);
+
+    //            OnCameraTransition(currentCamera.name);
+    //        }
+    //    }
+    //}
+
+    public void Update()
+    {
+        if (Input.anyKeyDown)
+        {
+            // read for any input if current cam is main menu cam
+            if (inMainMenu && IsVirtualCameraActive(mainMenuVirtualCamera))
+            {
+                Debug.Log("main menu");
+                TransitionFromMenuToIntro();
+            }
+        }
+
+        else if (Input.GetKeyUp(KeyCode.B) && !inMainMenu)
+        {
+            Debug.Log("key up");
+
+            EnableCameraInputReading(allowInput);
+            allowInput = !allowInput;
+        }
+
+    }
+
+    /// <summary>
+    /// Set bool for in main menu to false and changes main menu cam priority to 8 also enable random shit here to play intro anim. This should be less than the FlyThrough camera priority and the cinamchine will then automatically blend to that camera. get fukt.
+    /// </summary>
+    public void TransitionFromMenuToIntro()
+    {
+        inMainMenu = false;
+        introGameObj.SetActive(true);
+        mainMenuVirtualCamera.Priority = 8;
+        introCamAnim.Play();
+    }
+
+    public bool IsVirtualCameraActive(CinemachineVirtualCamera virtualCamera)
+    {
+        return IsVirtualCameraActive(virtualCamera.name);
+    }
+
+    public bool IsVirtualCameraActive(string virtualCameraName)
+    {
+        if (brain == null)
+        {
+            Debug.Log("no brain");
+            return false;
+        }
+
+        ICinemachineCamera activeCam = brain.ActiveVirtualCamera;
+        if (activeCam == null)
+        {
+            Debug.Log("No active cam");
+            return false;
+        }
+
+        // check if active cam is same as one being checked
+        if (activeCam.Name == virtualCameraName)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void EnableCameraInputReading(bool allowInput)
     {
         //CinemachineBrain brain = CinemachineCore.Instance.GetActiveBrain(0);
         if (brain == null)
@@ -39,21 +134,18 @@ public class CameraMan : MonoBehaviour
             return;
         }
 
-        if (activeCam.Name == gameVirtualCamera.name && !canReadInput)
+        // swap between virtual cameras (game camera to no input game camera)
+        if (activeCam.Name == gameVirtualCamera.name && !allowInput)
         {
-            Debug.Log("priority " + noInputGameVirtualCamera.Priority);
-
-            // cant read input set priority of no input cam higher else lower priority          
-            noInputGameVirtualCamera.Priority = 12;// !canReadInput ? 12 : 9;
-            Debug.Log("No input is higher priority cam" + !canReadInput + " priority " + noInputGameVirtualCamera.Priority);
+            // cant read input set priority of no input cam higher          
+            noInputGameVirtualCamera.Priority = 12;
             //AxisState.IInputAxisProvider input = gameVirtualCamera.GetInputAxisProvider();
-            Debug.Log("New prio " + activeCam.Priority);
         }
-        else if (activeCam.Name == noInputGameVirtualCamera.name && canReadInput)
+        // swap from no input game camera to regular game camera
+        else if (activeCam.Name == noInputGameVirtualCamera.name && allowInput)
         {
             noInputGameVirtualCamera.Priority = 9;
-            Debug.Log("back to having input");
-            Debug.Log("prio rest " + activeCam.Priority);
+            //Debug.Log("back to having input");
         }
         else
         {
