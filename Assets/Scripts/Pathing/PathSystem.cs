@@ -38,7 +38,8 @@ public class PathSystem : MonoBehaviour
 
     private void OnCheckPointReset()
     {
-        lastReachedCheckPoint.DoReset();
+        if (lastReachedCheckPoint != null)
+            lastReachedCheckPoint.DoReset();
     }
 
     public SplineContainer GetSpline()

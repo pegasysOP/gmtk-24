@@ -35,6 +35,7 @@ public class Wizard : MonoBehaviour
     private void OnStartGameEvent()
     {
         animator.SetTrigger("Walking");
+        GameManager.Instance.audioSystem.StartWalking();
         splineAnimate.Play();
     }
 
@@ -107,16 +108,20 @@ public class Wizard : MonoBehaviour
     private void WizardPause()
     {
         splineAnimate.Pause();
+        GameManager.Instance.audioSystem.StopWalking();
         animator.SetTrigger("Angry");
         Debug.Log($"Wizard is getting angry. Hurry up.");
+        GameManager.Instance.audioSystem.StopAngry();
     }
 
     private void OnOverTimeCheckPointCompleteEvent()
     {
         currentCheckPoint.OnComplete -= OnOverTimeCheckPointCompleteEvent;
         StopAllCoroutines();
+        GameManager.Instance.audioSystem.StopAngry();
         animator.SetTrigger("Walking");
         Debug.Log($"Wizard starts to move again.");
         splineAnimate.Play();
+        GameManager.Instance.audioSystem.StartWalking();
     }
 }

@@ -32,6 +32,7 @@ Transform:
   m_Children:
   - {fileID: 3332864134291459976}
   - {fileID: 2982152710481027077}
+  - {fileID: 3675704967103654173}
   m_Father: {fileID: 224534228960358929}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2737860649262548571
@@ -49,6 +50,8 @@ MonoBehaviour:
   musicSource: {fileID: 3450750325154372242}
   dragSourceObject: {fileID: 6666833568996417401}
   dragAudioClips: {fileID: 3896882051272355803}
+  wizardSourceObject: {fileID: 8221638299668915236}
+  wizardAudioClips: {fileID: 7240609968052992712}
 --- !u!1 &5943079064222390892
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +148,7 @@ MonoBehaviour:
   dragSelect: {fileID: 8300000, guid: 79187d23177d15444a85d69fe8dfeaac, type: 3}
   dragDrop: {fileID: 8300000, guid: dc57d440e697df6448dd0120c2ccc527, type: 3}
   dragSuccess: {fileID: 8300000, guid: b995eb17a32e0314ea5d515e59b97f3e, type: 3}
+  dragCollision: {fileID: 0}
 --- !u!1 &7213160570848228593
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,3 +322,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe900254cd92a04aae14e3dc074a879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8221638299668915236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3675704967103654173}
+  - component: {fileID: 7240609968052992712}
+  m_Layer: 0
+  m_Name: Wizard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3675704967103654173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8221638299668915236}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3777532888528497427}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7240609968052992712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8221638299668915236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11bed0ebca5c834c935df14901d1bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footStepGrass: {fileID: 0}
+  footStepGrassLeaves: {fileID: 0}
+  footStepStone: {fileID: 0}
+  footStepSnow: {fileID: 0}
+  wizardPop: {fileID: 0}
+  wizardBaloon: {fileID: 0}
+  wizardStaffDonk: {fileID: 0}
+  wizardSigh: {fileID: 0}
