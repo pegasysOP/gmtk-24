@@ -103,7 +103,8 @@ public class DraggableObject : MonoBehaviour, IDraggable
                 rigidBody.angularVelocity = rigidBody.angularVelocity.normalized * (maxRotationSpeed * transform.localScale.magnitude);
         }
 
-        StartCoroutine(puzzleZone.ClampRigidbody(this));
+        if (puzzleZone != null)
+            StartCoroutine(puzzleZone.ClampRigidbody(this));
     }
 
     public void SetSelected(bool selected)

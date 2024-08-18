@@ -9,6 +9,7 @@ public class CheckPoint : MonoBehaviour
 
     public List<DraggableObject> draggableObjects = new List<DraggableObject>();
     public List<TriggerCollider> triggerColliders = new List<TriggerCollider>();
+    public List<TriggerObject> triggerObjects = new List<TriggerObject>();
 
     public void Complete()
     {
@@ -31,6 +32,11 @@ public class CheckPoint : MonoBehaviour
         foreach (TriggerCollider triggerCollider in triggerColliders)
         {
             triggerCollider.DoReset();
+        }
+
+        foreach (TriggerObject triggerObject in triggerObjects)
+        {
+            triggerObject.DoReset();
         }
     }
 }

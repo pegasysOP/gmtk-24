@@ -34,6 +34,9 @@ public class Receptacle : MonoBehaviour
         if (completed)
             return;
 
+        if (targetDraggable == null)
+            return;
+
         foreach (Solution solution in solutions)
         {
             float distance = (targetDraggable.GetPosition() - transform.position - solution.Position).magnitude;

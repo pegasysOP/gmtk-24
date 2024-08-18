@@ -34,6 +34,7 @@ public class Wizard : MonoBehaviour
 
     private void OnStartGameEvent()
     {
+        animator.SetTrigger("Walking");
         splineAnimate.Play();
     }
 
