@@ -24,6 +24,7 @@ public class DraggableObject : MonoBehaviour, IDraggable
     public float impactForceThreshold = 1f;
     public GameObject objectDust;
     public GameObject floorDust;
+    public float particleDeathTimer = 3f;
 
     private Rigidbody rigidBody;
     private Vector3 startPosition;
@@ -201,11 +202,13 @@ public class DraggableObject : MonoBehaviour, IDraggable
 
         if (impactMagnitude > impactForceThreshold)
         {
-            Instantiate(objectDust, collision.GetContact(0).point, Quaternion.identity);
+            GameObject hitParticle = Instantiate(objectDust, collision.GetContact(0).point, Quaternion.identity);
+            Destroy(hitParticle, particleDeathTimer);
 
             if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
-                Instantiate(floorDust, collision.GetContact(0).point, Quaternion.identity);
+                GameObject groundParticle = Instantiate(floorDust, collision.GetContact(0).point, Quaternion.identity);
+                Destroy(groundParticle, particleDeathTimer);
             }
         }
     }
