@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3382293245731047825}
   - component: {fileID: 5262007307062627625}
   - component: {fileID: 1920833784682275555}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Puzzle Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

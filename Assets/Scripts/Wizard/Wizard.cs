@@ -24,7 +24,6 @@ public class Wizard : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.StartGame += OnStartGameEvent;
-        animator = GetComponent<Animator>();
     }
 
     private void OnDestroy()
