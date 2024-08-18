@@ -259,6 +259,76 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &980434272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 980434276}
+  - component: {fileID: 980434278}
+  - component: {fileID: 980434277}
+  m_Layer: 0
+  m_Name: Puzzle Zone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &980434276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980434272}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.69, z: 2.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &980434277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980434272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c67e0f481cd36488ebe2787090aa4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showBoundsInEditor: 1
+  width: 8.6
+  height: 3.5
+  angle: 0
+--- !u!65 &980434278
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980434272}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.6, y: 3.5, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1030192661
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,6 +700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b2423aaf0755e428e906700743c77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzleZone: {fileID: 0}
   dragForce: 500
   maxDragSpeed: 20
   movementDamping: 15
@@ -640,6 +711,8 @@ MonoBehaviour:
   minScale: 0.1
   maxScale: 10
   impactForceThreshold: 5
+  objectDust: {fileID: 0}
+  floorDust: {fileID: 0}
 --- !u!54 &2029665782
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -665,7 +738,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 56
+  m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!65 &2029665783
 BoxCollider:
@@ -1062,6 +1135,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sphere
       objectReference: {fileID: 0}
+    - target: {fileID: 5556424148186660978, guid: 4376d46e47ad99a4db71446eeafcaeed,
+        type: 3}
+      propertyPath: puzzleZone
+      value: 
+      objectReference: {fileID: 980434277}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1092,3 +1170,4 @@ SceneRoots:
   - {fileID: 4006567528064396552}
   - {fileID: 4091699147662330025}
   - {fileID: 2670614458981252657}
+  - {fileID: 980434276}

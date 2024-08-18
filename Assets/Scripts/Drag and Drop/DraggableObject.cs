@@ -5,6 +5,8 @@ using UnityEngine.Events;
 [RequireComponent (typeof(Rigidbody))]
 public class DraggableObject : MonoBehaviour, IDraggable
 {
+    public PuzzleZone puzzleZone;
+
     [Header("Movement")]
     public float dragForce = 500f;
     public float maxDragSpeed = 20f;
@@ -78,27 +80,30 @@ public class DraggableObject : MonoBehaviour, IDraggable
 
     private void FixedUpdate()
     {
-        if (locked || !selected)
-            return;
-        Vector3 targetDirection = (targetPos - transform.position).normalized;
-        float targetDistance = (targetPos - transform.position).magnitude;
+        if (selected && !locked)
+        {
+            Vector3 targetDirection = (targetPos - transform.position).normalized;
+            float targetDistance = (targetPos - transform.position).magnitude;
 
-        // movement
-        rigidBody.AddForce(targetDirection * dragForce * targetDistance);
-        if (rigidBody.velocity.magnitude > maxDragSpeed)
-            rigidBody.velocity = rigidBody.velocity.normalized * maxDragSpeed;
+            // movement
+            rigidBody.AddForce(targetDirection * dragForce * targetDistance);
+            if (rigidBody.velocity.magnitude > maxDragSpeed)
+                rigidBody.velocity = rigidBody.velocity.normalized * maxDragSpeed;
 
-        // scaling
-        Vector3 targetScale = transform.localScale + Vector3.one * scaleInput * scaleRate;
-        targetScale = new Vector3(Mathf.Clamp(targetScale.x, minScale, maxScale),
-                                    Mathf.Clamp(targetScale.y, minScale, maxScale),
-                                    Mathf.Clamp(targetScale.z, minScale, maxScale));
-        transform.localScale = targetScale;
+            // scaling
+            Vector3 targetScale = transform.localScale + Vector3.one * scaleInput * scaleRate;
+            targetScale = new Vector3(Mathf.Clamp(targetScale.x, minScale, maxScale),
+                                        Mathf.Clamp(targetScale.y, minScale, maxScale),
+                                        Mathf.Clamp(targetScale.z, minScale, maxScale));
+            transform.localScale = targetScale;
 
-        // rotation            
-        rigidBody.AddTorque(transform.forward * rotationInput * -rotationForce);
-        if (rigidBody.angularVelocity.magnitude > (maxRotationSpeed * transform.localScale.magnitude))
-            rigidBody.angularVelocity = rigidBody.angularVelocity.normalized * (maxRotationSpeed * transform.localScale.magnitude);
+            // rotation            
+            rigidBody.AddTorque(transform.forward * rotationInput * -rotationForce);
+            if (rigidBody.angularVelocity.magnitude > (maxRotationSpeed * transform.localScale.magnitude))
+                rigidBody.angularVelocity = rigidBody.angularVelocity.normalized * (maxRotationSpeed * transform.localScale.magnitude);
+        }
+
+        StartCoroutine(puzzleZone.ClampRigidbody(this));
     }
 
     public void SetSelected(bool selected)
@@ -216,5 +221,10 @@ public class DraggableObject : MonoBehaviour, IDraggable
     public MeshRenderer GetRenderer()
     {
         return gameObject.GetComponent<MeshRenderer>();
+    }
+
+    public Rigidbody GetRigidbody()
+    {
+        return rigidBody;
     }
 }
