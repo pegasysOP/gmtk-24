@@ -6,6 +6,7 @@ using UnityEngine.Splines;
 public class Wizard : MonoBehaviour
 {
     private SplineAnimate splineAnimate;
+    private float splineTotalTime;
     public Action<CheckPoint> CheckPointTrigger;
     public Action ResetCheckPoint;
     public float time;
@@ -24,6 +25,7 @@ public class Wizard : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.StartGame += OnStartGameEvent;
+        splineTotalTime = splineAnimate.Duration;
     }
 
     private void OnDestroy()
@@ -54,6 +56,11 @@ public class Wizard : MonoBehaviour
         else
         {            
             wizardsMagicBeam.SetActive(false);
+        }
+
+        if (IsWalking()) 
+        {
+            GameManager.Instance.audioSystem.SetWindVolume(splineAnimate.ElapsedTime, splineTotalTime);
         }
     }
 
@@ -89,15 +96,18 @@ public class Wizard : MonoBehaviour
     {
         checkPoint.OnComplete += OnOverTimeCheckPointCompleteEvent;
         WizardPause();
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
 
         if (!checkPoint.hasCompleted)
         {
+            GameManager.Instance.audioSystem.PlayWizardPop();
+            yield return new WaitForSeconds(2f);
             splineAnimate.ElapsedTime = time;
             ResetCheckPoint?.Invoke();
             //this is basically you losing here and resetting
             yield return new WaitForSeconds(1f);
             splineAnimate.Play();
+            animator.SetTrigger("Walking");
             yield break;
         }
 
@@ -110,7 +120,7 @@ public class Wizard : MonoBehaviour
         GameManager.Instance.audioSystem.StopWalking();
         animator.SetTrigger("Angry");
         Debug.Log($"Wizard is getting angry. Hurry up.");
-        GameManager.Instance.audioSystem.StopAngry();
+        GameManager.Instance.audioSystem.StartAngry();
     }
 
     private void OnOverTimeCheckPointCompleteEvent()

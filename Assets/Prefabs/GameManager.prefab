@@ -107,6 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseDrag: {fileID: 5051530784396275700}
   audioSystem: {fileID: 2737860649262548571}
+  cameraMan: {fileID: 0}
   cameraRotateAround: {fileID: 0}
 --- !u!1 &6666833568996417401
 GameObject:
@@ -379,5 +380,5 @@ MonoBehaviour:
   footStepSnow: {fileID: 8300000, guid: 61e139eece1b57546840954b98d1c6a8, type: 3}
   wizardPop: {fileID: 8300000, guid: 278648301c4c9d34ba90d90d3ced07d1, type: 3}
   wizardBaloon: {fileID: 8300000, guid: 4df93050b901bd049a5f813e26da350f, type: 3}
-  wizardStaffDonk: {fileID: 0}
-  wizardSigh: {fileID: 0}
+  wizardStaffDonk: {fileID: 8300000, guid: 459e28f9a5a6a1e4ca7d383fd970f7c6, type: 3}
+  wizardSigh: {fileID: 8300000, guid: 5a0bb0dd7b14955459ef973659ddc78a, type: 3}

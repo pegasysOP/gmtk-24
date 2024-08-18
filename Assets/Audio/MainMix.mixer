@@ -109,7 +109,9 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: f8d90d3c103d3594e8cc7a4300531450
+    name: WindVolume
   m_AudioMixerGroupViews:
   - guids:
     - efce9b7d974925b4b80c09ce27c8cc0b
@@ -119,6 +121,7 @@ AudioMixerController:
     - 0faf8fda6d3016e49bf59a12551cef99
     - c4aa934fad96dca4eacb7b77c0ab687c
     - 0b75196fb52012d47b4166fdb7243dcb
+    - 3f7d10542e2c06246b37077c8315d05e
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -138,6 +141,7 @@ AudioMixerGroupController:
   - {fileID: 7855317921838675602}
   - {fileID: -2628620230485914797}
   - {fileID: 4140982735333050677}
+  - {fileID: 1733081228755551614}
   m_Volume: 496aaf256827b19409301058892ce5e5
   m_Pitch: 0cde826e7378ad245af53739b408ccb7
   m_Send: 00000000000000000000000000000000
@@ -172,7 +176,22 @@ AudioMixerSnapshotController:
   m_SnapshotID: 2b16531c3cf5d5e43b5f10b8d2fdd42c
   m_FloatValues:
     a51747235d087e34b8eef44fd0acfd92: -61.480442
+    f8d90d3c103d3594e8cc7a4300531450: -80
   m_TransitionOverrides: {}
+--- !u!244 &50312841228852706
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 30da7f5095fdf5c438b17107423799f6
+  m_EffectName: Attenuation
+  m_MixLevel: 45b0de324d2f73d47b70b24600a6e503
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &140943923251662021
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -188,6 +207,25 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 5385418662045430677}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &1733081228755551614
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Wind
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 3f7d10542e2c06246b37077c8315d05e
+  m_Children: []
+  m_Volume: f8d90d3c103d3594e8cc7a4300531450
+  m_Pitch: e385468447f321e4db21b15549fffa17
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 50312841228852706}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0

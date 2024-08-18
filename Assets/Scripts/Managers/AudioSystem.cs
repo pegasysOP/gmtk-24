@@ -5,6 +5,8 @@ using UnityEngine.Audio;
 
 public class AudioSystem : MonoBehaviour
 {
+    public AudioMixer mainMix;
+
     public AudioMixerGroup dragMixer;
     public AudioMixerGroup wizardMixer;
 
@@ -23,6 +25,10 @@ public class AudioSystem : MonoBehaviour
     public WizardAudioClips wizardAudioClips;
     public float footStepTimer;
     public bool isWalking;
+
+    [Header("Wind")]
+    public AudioSource lowWind;
+    public AudioSource highWind;
 
     private void Start()
     {
@@ -115,6 +121,7 @@ public class AudioSystem : MonoBehaviour
 
     public void StartAngry()
     {
+        Debug.Log($"Angry audio called");
         StartCoroutine(AngryCoroutine());
     }
 
@@ -130,9 +137,24 @@ public class AudioSystem : MonoBehaviour
             if (source != null && !source.isPlaying)
             {
                 source.clip = wizardAudioClips.wizardBaloon;
+                source.Play();
+                break;
             }
         }
         yield return null;
+    }
+
+    public void PlayWizardPop()
+    {
+        foreach (AudioSource source in wizardSources)
+        {
+            if (source != null && !source.isPlaying)
+            {
+                source.clip = wizardAudioClips.wizardPop;
+                source.Play();
+                break;
+            }
+        }
     }
 
     public void PlayWizardStaffBonk()
@@ -159,5 +181,24 @@ public class AudioSystem : MonoBehaviour
                 break;
             }
         }
+    }
+
+    float map(float x, float in_min, float in_max, float out_min, float out_max)
+    {
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    }
+
+    public void SetWindVolume(float elapsed, float total)
+    {
+        float volume = map(elapsed, 0, total, -25f, 0);
+
+        Debug.Log($"{volume}");
+        mainMix.SetFloat("WindVolume", volume);
+    }
+
+    public void PlayWind()
+    {
+        lowWind.Play();
+        highWind.Play();
     }
 }
