@@ -5,7 +5,6 @@ using UnityEngine.Events;
 [RequireComponent (typeof(Rigidbody))]
 public class DraggableObject : MonoBehaviour, IDraggable
 {
-    public PuzzleZone puzzleZone;
 
     [Header("Movement")]
     public float dragForce = 500f;
@@ -21,6 +20,13 @@ public class DraggableObject : MonoBehaviour, IDraggable
     public float scaleRate = 0.1f;
     public float minScale = 0.1f;
     public float maxScale = 10f;
+
+    [Header("Constraints")]
+    public PuzzleZone puzzleZone;
+    public bool canDrag = true;
+    public bool canRotate = true;
+    public bool canScale = true;
+    public bool useGravity = true;
 
     [Header("Impacts")]
     public float impactForceThreshold = 1f;
@@ -59,6 +65,7 @@ public class DraggableObject : MonoBehaviour, IDraggable
         rigidBody.interpolation = RigidbodyInterpolation.Interpolate;
         rigidBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rigidBody.constraints = RigidbodyConstraints.None;
+        rigidBody.useGravity = useGravity;
     }
 
     private void Update()
@@ -67,15 +74,24 @@ public class DraggableObject : MonoBehaviour, IDraggable
             return;
 
         // drag input
-        Vector3 mouseScreenPosition = Input.mousePosition;
-        mouseScreenPosition.z = Camera.main.WorldToScreenPoint(transform.position).z;
-        targetPos = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+        if (canDrag)
+        {
+            Vector3 mouseScreenPosition = Input.mousePosition;
+            mouseScreenPosition.z = Camera.main.WorldToScreenPoint(transform.position).z;
+            targetPos = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+        }
 
         // rotation input
-        rotationInput = Input.GetAxis("Horizontal");
+        if (canRotate)
+        {
+            rotationInput = Input.GetAxis("Horizontal");
+        }
 
         // scale input
-        scaleInput = Input.GetAxis("Vertical");
+        if (canScale)
+        {
+            scaleInput = Input.GetAxis("Vertical");
+        }
     }
 
     private void FixedUpdate()
