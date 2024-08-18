@@ -147,4 +147,17 @@ public class AudioSystem : MonoBehaviour
             }
         }
     }
+
+    public void PlayDraggableCollide()
+    {
+        foreach (AudioSource source in audioSources)
+        {
+            if (source != null && !source.isPlaying)
+            {
+                source.clip = dragAudioClips.dragCollision;
+                source.Play();
+                break;
+            }
+        }
+    }
 }

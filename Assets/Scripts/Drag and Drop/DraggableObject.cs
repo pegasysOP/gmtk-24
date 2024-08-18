@@ -208,6 +208,7 @@ public class DraggableObject : MonoBehaviour, IDraggable
 
         if (impactMagnitude > impactForceThreshold)
         {
+            GameManager.Instance.audioSystem.PlayDraggableCollide();
             GameObject hitParticle = Instantiate(objectDust, collision.GetContact(0).point, Quaternion.identity);
             Destroy(hitParticle, particleDeathTimer);
 

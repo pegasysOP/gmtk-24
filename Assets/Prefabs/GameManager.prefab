@@ -47,11 +47,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 230c6bb1160ee4642893f0fea6d9f62f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragMixer: {fileID: 1894421175929023835, guid: 6865d2d5cd083f6498850ae9ead4fa20,
+    type: 2}
+  wizardMixer: {fileID: 4140982735333050677, guid: 6865d2d5cd083f6498850ae9ead4fa20,
+    type: 2}
   musicSource: {fileID: 3450750325154372242}
   dragSourceObject: {fileID: 6666833568996417401}
   dragAudioClips: {fileID: 3896882051272355803}
+  isDragging: 0
   wizardSourceObject: {fileID: 8221638299668915236}
   wizardAudioClips: {fileID: 7240609968052992712}
+  footStepTimer: 0.4
+  isWalking: 0
 --- !u!1 &5943079064222390892
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +119,7 @@ GameObject:
   - component: {fileID: 2982152710481027077}
   - component: {fileID: 3896882051272355803}
   m_Layer: 0
-  m_Name: Dragging
+  m_Name: Dragging Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +155,7 @@ MonoBehaviour:
   dragSelect: {fileID: 8300000, guid: 79187d23177d15444a85d69fe8dfeaac, type: 3}
   dragDrop: {fileID: 8300000, guid: dc57d440e697df6448dd0120c2ccc527, type: 3}
   dragSuccess: {fileID: 8300000, guid: b995eb17a32e0314ea5d515e59b97f3e, type: 3}
-  dragCollision: {fileID: 0}
+  dragCollision: {fileID: 8300000, guid: 19adf2b3217d937449f6660788139f60, type: 3}
 --- !u!1 &7213160570848228593
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +340,7 @@ GameObject:
   - component: {fileID: 3675704967103654173}
   - component: {fileID: 7240609968052992712}
   m_Layer: 0
-  m_Name: Wizard
+  m_Name: Wizard Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -366,11 +373,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11bed0ebca5c834c935df14901d1bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footStepGrass: {fileID: 0}
-  footStepGrassLeaves: {fileID: 0}
-  footStepStone: {fileID: 0}
-  footStepSnow: {fileID: 0}
-  wizardPop: {fileID: 0}
-  wizardBaloon: {fileID: 0}
+  footStepGrass: {fileID: 8300000, guid: 9d7427b5281bae84cbc7460ef8ca7ae2, type: 3}
+  footStepGrassLeaves: {fileID: 8300000, guid: 61ed1ffe703c8f04fa78e43787afcde5, type: 3}
+  footStepStone: {fileID: 8300000, guid: a6864b6a79f250e4081aab42d6df4dc1, type: 3}
+  footStepSnow: {fileID: 8300000, guid: 61e139eece1b57546840954b98d1c6a8, type: 3}
+  wizardPop: {fileID: 8300000, guid: 278648301c4c9d34ba90d90d3ced07d1, type: 3}
+  wizardBaloon: {fileID: 8300000, guid: 4df93050b901bd049a5f813e26da350f, type: 3}
   wizardStaffDonk: {fileID: 0}
   wizardSigh: {fileID: 0}
