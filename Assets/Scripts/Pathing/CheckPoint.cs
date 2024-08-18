@@ -7,6 +7,7 @@ public class CheckPoint : MonoBehaviour
     public Action OnComplete;
     public bool hasCompleted;
 
+    public List<Receptacle> receptacles = new List<Receptacle>();
     public List<DraggableObject> draggableObjects = new List<DraggableObject>();
     public List<TriggerCollider> triggerColliders = new List<TriggerCollider>();
     public List<TriggerObject> triggerObjects = new List<TriggerObject>();
@@ -24,6 +25,11 @@ public class CheckPoint : MonoBehaviour
 
     public void DoReset()
     {
+        foreach (Receptacle receptacle in receptacles)
+        {
+            receptacle.DoReset();
+        }
+
         foreach (DraggableObject draggableObject in draggableObjects) 
         { 
             draggableObject.DoReset();

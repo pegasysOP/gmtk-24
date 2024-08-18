@@ -61,6 +61,13 @@ public class Receptacle : MonoBehaviour
         }
     }
 
+    public void DoReset()
+    {
+        completed = false;
+
+        targetDraggable.DoReset();
+    }
+
     public void ClearSolutions()
     {
         solutions.Clear();
