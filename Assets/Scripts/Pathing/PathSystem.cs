@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -10,6 +11,7 @@ public class PathSystem : MonoBehaviour
     public List<CheckPoint> points = new List<CheckPoint>();
     public Wizard wizard;
     public int lastReachedCheckPointIndex = 0;
+    public CheckPoint lastReachedCheckPoint = null;
 
     private void Awake()
     {
@@ -30,8 +32,13 @@ public class PathSystem : MonoBehaviour
     private void Start()
     {
         wizard.CheckPointTrigger += CheckPointReached;
-
+        wizard.ResetCheckPoint += OnCheckPointReset;
         _splineContainer = gameObject.GetComponent<SplineContainer>();
+    }
+
+    private void OnCheckPointReset()
+    {
+        lastReachedCheckPoint.DoReset();
     }
 
     public SplineContainer GetSpline()
@@ -42,5 +49,6 @@ public class PathSystem : MonoBehaviour
     private void CheckPointReached(CheckPoint checkPoint)
     {
         lastReachedCheckPointIndex++;
+        lastReachedCheckPoint = checkPoint;
     }
 }

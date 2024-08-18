@@ -51,4 +51,18 @@ public class TorchTriggerObject : TriggerObject
             lightToSwitch.enabled = true;
         }
     }
+
+    public override void DoReset()
+    {
+        base.DoReset();
+
+        if (startOn)
+        {
+            lightToSwitch.enabled = true;
+        }
+        else
+        {
+            lightToSwitch.enabled = false;
+        }
+    }
 }

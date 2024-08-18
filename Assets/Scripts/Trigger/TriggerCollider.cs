@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TriggerCollider : MonoBehaviour, ITriggerObject
 {
-    public List<TriggerObject> objectsToTrigger;
+    public List<TriggerObject> objectsToTrigger = new List<TriggerObject>();
 
     public void OnDrawGizmos()
     {
@@ -15,6 +15,14 @@ public class TriggerCollider : MonoBehaviour, ITriggerObject
         foreach (TriggerObject triggerObject in objectsToTrigger)
         {
             triggerObject.Trigger();
+        }
+    }
+
+    public void DoReset()
+    {
+        foreach (TriggerObject triggerObject in objectsToTrigger)
+        {
+            triggerObject.DoReset();
         }
     }
 }

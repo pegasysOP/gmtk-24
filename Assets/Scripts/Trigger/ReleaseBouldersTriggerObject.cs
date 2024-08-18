@@ -2,6 +2,16 @@
 {
     public override void Trigger()
     {
-        Destroy(gameObject);
+        if (gameObject.activeInHierarchy)
+            gameObject.SetActive(false);
+        else 
+            gameObject.SetActive(true);
+    }
+
+    public override void DoReset()
+    {
+        base.DoReset();
+
+        Trigger();
     }
 }

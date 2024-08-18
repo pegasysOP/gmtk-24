@@ -7,6 +7,7 @@ public class Wizard : MonoBehaviour
 {
     private SplineAnimate splineAnimate;
     public Action<CheckPoint> CheckPointTrigger;
+    public Action ResetCheckPoint;
     public float time;
 
     public CheckPoint currentCheckPoint;
@@ -84,6 +85,7 @@ public class Wizard : MonoBehaviour
         if (!checkPoint.hasCompleted)
         {
             splineAnimate.ElapsedTime = time;
+            ResetCheckPoint?.Invoke();
             //this is basically you losing here and resetting
             yield return new WaitForSeconds(1f);
             splineAnimate.Play();
