@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3645493112554720913}
   - component: {fileID: 3795303394016095191}
   - component: {fileID: 2202937127756325728}
+  - component: {fileID: 3406105193416278330}
   - component: {fileID: 842109879735870344}
   - component: {fileID: 7488904699123710069}
   - component: {fileID: 316370589390423761}
@@ -99,6 +100,23 @@ MonoBehaviour:
   currentCheckPoint: {fileID: 0}
   wizardsMagicBeam: {fileID: 4979883382646161224}
   animator: {fileID: 0}
+--- !u!114 &3406105193416278330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325310618444298256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5fa361d73e275d448e7182d30ab5f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  checkDistance: 5
+  wizard: {fileID: 8247610850104772267}
 --- !u!54 &842109879735870344
 Rigidbody:
   m_ObjectHideFlags: 0
