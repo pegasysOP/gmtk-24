@@ -146,7 +146,6 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-
     private bool IsInGameCam()
     {
         GameManager gameManager = GameManager.Instance;

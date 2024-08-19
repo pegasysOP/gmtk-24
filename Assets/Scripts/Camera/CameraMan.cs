@@ -1,5 +1,6 @@
 ﻿using Cinemachine;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class CameraMan : MonoBehaviour
@@ -52,10 +53,7 @@ public class CameraMan : MonoBehaviour
             // read for any input if current cam is main menu cam
             if (inMainMenu && IsVirtualCameraActive(mainMenuVirtualCamera))
             {
-                {
-                    Debug.Log("any input received menu cam -> fly cam");
-                    TransitionFromMenuToIntro();
-                }
+                TransitionFromMenuToIntro();
             }
         }
 
@@ -74,8 +72,36 @@ public class CameraMan : MonoBehaviour
     public void TransitionFromMenuToIntro()
     {
         inMainMenu = false;
-        introGameObj.SetActive(true);
+
+        // add delay for switch from main cam to into cam
+        StartCoroutine(ChangeCamerPriorityDelay(1));
+    }
+
+    IEnumerator ChangeCamerPriorityDelay(float duration)
+    {
+        float time = 0;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+
         mainMenuVirtualCamera.Priority = 8;
+
+        // delay enabling relevant game obj and intro anim :')
+        StartCoroutine(DelayedGameStart(2));
+    }
+
+    IEnumerator DelayedGameStart(float duration)
+    {
+        float time = 0;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        introGameObj.SetActive(true);
         introCamAnim.Play();
     }
 
