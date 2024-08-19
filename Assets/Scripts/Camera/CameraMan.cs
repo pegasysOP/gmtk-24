@@ -89,7 +89,7 @@ public class CameraMan : MonoBehaviour
         mainMenuVirtualCamera.Priority = 8;
 
         // delay enabling relevant game obj and intro anim :')
-        StartCoroutine(DelayedGameStart(2));
+        StartCoroutine(DelayedGameStart(1));
     }
 
     IEnumerator DelayedGameStart(float duration)
