@@ -1,11 +1,11 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class DraggableChildObject : MonoBehaviour, IDraggableChild
+public class DraggableChildObject : MonoBehaviour
 {
     public DraggableObject draggableParent;
 
-    public IDraggable GetDraggableParent()
+    public DraggableObject GetDraggableParent()
     {
         return draggableParent;
     }

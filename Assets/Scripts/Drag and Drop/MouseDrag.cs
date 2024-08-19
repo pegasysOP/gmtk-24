@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MouseDrag : MonoBehaviour
 {
-    private IDraggable selectedDraggable;
+    private DraggableObject selectedDraggable;
 
     private void Update()
     {
@@ -21,8 +21,8 @@ public class MouseDrag : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                IDraggable draggable = hit.collider.GetComponent<IDraggable>() ?? hit.collider.GetComponent<IDraggableChild>()?.GetDraggableParent();
-                if (draggable == null || draggable.IsLocked())
+                DraggableObject draggable = hit.collider.GetComponent<DraggableObject>() ?? hit.collider.GetComponent<DraggableChildObject>()?.GetDraggableParent();
+                if (draggable == null || (draggable.IsLocked() && draggable.stayLocked))
                     return;
 
                 if (selectedDraggable != null)

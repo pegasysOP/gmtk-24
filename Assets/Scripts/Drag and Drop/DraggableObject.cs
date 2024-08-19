@@ -29,6 +29,7 @@ public class DraggableObject : MonoBehaviour, IDraggable
     public bool useGravity = true;
     public bool lockHorizontal = false;
     public bool lockVertical = false;
+    public bool stayLocked = true;
 
     [Header("Impacts")]
     public float impactForceThreshold = 1f;
@@ -140,6 +141,7 @@ public class DraggableObject : MonoBehaviour, IDraggable
             rigidBody.useGravity = false;
             rigidBody.drag = movementDamping;
             rigidBody.angularDrag = rotationDamping;
+            Lock(false);
         }
         else
         {
