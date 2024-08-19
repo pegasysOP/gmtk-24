@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cherries
+  m_Name: Wood 1
   m_Shader: {fileID: -6465566751694194690, guid: 67a423a244a352942a7e63498b09145f,
     type: 3}
   m_Parent: {fileID: 0}
@@ -118,7 +118,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Roughness: 0.26
+    - _Roughness: 0
     - _Smoothness: 0.206
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -129,10 +129,10 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.41509432, g: 0.3544793, b: 0.2995728, a: 1}
-    - _Bottom_Colour: {r: 1, g: 0, b: 0.07060623, a: 0}
+    - _Bottom_Colour: {r: 0.028301895, g: 0.01907136, b: 0.012148455, a: 0}
     - _Color: {r: 0.4150943, g: 0.35447928, b: 0.29957277, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Top_Colour: {r: 0.3962264, g: 0.0018689969, b: 0.055037573, a: 0}
+    - _Top_Colour: {r: 0.26415092, g: 0.15955137, b: 0.13082945, a: 0}
   m_BuildTextureStacks: []

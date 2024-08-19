@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cherries
+  m_Name: Water
   m_Shader: {fileID: -6465566751694194690, guid: 67a423a244a352942a7e63498b09145f,
     type: 3}
   m_Parent: {fileID: 0}
@@ -118,8 +118,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Roughness: 0.26
-    - _Smoothness: 0.206
+    - _Roughness: 0.66
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -128,11 +128,11 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.41509432, g: 0.3544793, b: 0.2995728, a: 1}
-    - _Bottom_Colour: {r: 1, g: 0, b: 0.07060623, a: 0}
-    - _Color: {r: 0.4150943, g: 0.35447928, b: 0.29957277, a: 1}
+    - _BaseColor: {r: 0.20843717, g: 0.1523674, b: 0.3018868, a: 1}
+    - _Bottom_Colour: {r: 0.0013349979, g: 0.17320989, b: 0.2830189, a: 0}
+    - _Color: {r: 0.20843714, g: 0.15236735, b: 0.30188674, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Top_Colour: {r: 0.3962264, g: 0.0018689969, b: 0.055037573, a: 0}
+    - _Top_Colour: {r: 0.23268957, g: 0.63222516, b: 0.7830189, a: 0}
   m_BuildTextureStacks: []
