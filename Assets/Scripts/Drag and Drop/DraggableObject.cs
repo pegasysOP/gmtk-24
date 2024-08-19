@@ -27,6 +27,8 @@ public class DraggableObject : MonoBehaviour, IDraggable
     public bool canRotate = true;
     public bool canScale = true;
     public bool useGravity = true;
+    public bool lockHorizontal = false;
+    public bool lockVertical = false;
 
     [Header("Impacts")]
     public float impactForceThreshold = 1f;
@@ -79,6 +81,12 @@ public class DraggableObject : MonoBehaviour, IDraggable
             Vector3 mouseScreenPosition = Input.mousePosition;
             mouseScreenPosition.z = Camera.main.WorldToScreenPoint(transform.position).z;
             targetPos = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+
+            //clamp x or y if locked
+            if (lockVertical)
+                targetPos = new Vector3(targetPos.x, transform.position.y, targetPos.z);
+            if (lockHorizontal)
+                targetPos = new Vector3(transform.position.x, targetPos.y, transform.position.z);
         }
 
         // rotation input
@@ -135,7 +143,7 @@ public class DraggableObject : MonoBehaviour, IDraggable
         }
         else
         {
-            rigidBody.useGravity = true;
+            rigidBody.useGravity = useGravity;
             rigidBody.drag = defaultMovementDamping;
             rigidBody.angularDrag = defaultRotationDamping;
         }

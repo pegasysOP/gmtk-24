@@ -1633,7 +1633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b2423aaf0755e428e906700743c77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleZone: {fileID: 1595927552}
   dragForce: 500
   maxDragSpeed: 20
   movementDamping: 15
@@ -1643,10 +1642,13 @@ MonoBehaviour:
   scaleRate: 0.1
   minScale: 0.1
   maxScale: 10
+  puzzleZone: {fileID: 1595927552}
   canDrag: 1
   canRotate: 0
   canScale: 0
   useGravity: 0
+  lockHorizontal: 1
+  lockVertical: 0
   impactForceThreshold: 1
   objectDust: {fileID: 0}
   floorDust: {fileID: 0}
@@ -2938,8 +2940,6 @@ MonoBehaviour:
   width: 0
   height: 4.4
   angle: 90
-  lockHorizontal: 1
-  lockVertical: 0
 --- !u!65 &1595927553
 BoxCollider:
   m_ObjectHideFlags: 0

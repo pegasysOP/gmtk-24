@@ -9,9 +9,6 @@ public class PuzzleZone : MonoBehaviour
     [Range(0, 100)] public float height = 10f;
     [Range(0, 360)] public float angle = 0f;
 
-    public bool lockHorizontal = false;
-    public bool lockVertical = false;
-
     BoxCollider boxCollider;
     Plane plane;
 
@@ -41,19 +38,20 @@ public class PuzzleZone : MonoBehaviour
     public IEnumerator ClampRigidbody(DraggableObject draggableObject)
     {
         Rigidbody rigidbody = draggableObject.GetRigidbody();
+        bool lockHorizontal = draggableObject.lockHorizontal;
+        bool lockVertical = draggableObject.lockVertical;
 
         //clamp x or y if locked
-       if (lockHorizontal)
-       {
-           rigidbody.position = new Vector3(transform.position.x, rigidbody.position.y, transform.position.z);
-           rigidbody.velocity = new Vector3(0f, rigidbody.velocity.y, 0f);
-       
-       }
-       if (lockVertical)
-       {
-           rigidbody.position = new Vector3(rigidbody.position.x, transform.position.y, rigidbody.position.z);
-           rigidbody.velocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
-       }
+        if (lockHorizontal)
+        {
+            rigidbody.velocity = new Vector3(0f, rigidbody.velocity.y, 0f);
+            rigidbody.position = new Vector3(transform.position.x, rigidbody.position.y, transform.position.z);
+        }
+        if (lockVertical)
+        {
+            rigidbody.velocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
+            rigidbody.position = new Vector3(rigidbody.position.x, transform.position.y, rigidbody.position.z);
+        }
 
         // map velocity onto plane
         rigidbody.velocity = Vector3.ProjectOnPlane(rigidbody.velocity, plane.normal);
@@ -73,33 +71,14 @@ public class PuzzleZone : MonoBehaviour
         if (Vector3.Distance(rigidbody.position, closestPoint) > Mathf.Epsilon)
         {
             Vector3 targetDirection = (closestPoint - rigidbody.position).normalized;
-            if (lockHorizontal)
-                targetDirection = new Vector3(0f, targetDirection.y, 0f).normalized;
-            if (!lockVertical) 
-                targetDirection = new Vector3(targetDirection.x, 0f, targetDirection.z).normalized;
 
             float targetDistance = (closestPoint - rigidbody.position).magnitude;
 
             rigidbody.AddForce(targetDirection * draggableObject.dragForce * targetDistance);
             if (rigidbody.velocity.magnitude > draggableObject.maxDragSpeed)
-                rigidbody.velocity = rigidbody.velocity.normalized * draggableObject.maxDragSpeed; 
+                rigidbody.velocity = rigidbody.velocity.normalized * draggableObject.maxDragSpeed;
 
-            Debug.DrawRay(rigidbody.position, targetDirection * draggableObject.dragForce * targetDistance);
+            Debug.DrawRay(rigidbody.position, targetDirection * targetDistance);
         }
-
-        //clamp x or y if locked
-        if (lockHorizontal)
-        {
-            rigidbody.position = new Vector3(transform.position.x, rigidbody.position.y, transform.position.z);
-            rigidbody.velocity = new Vector3(0f, rigidbody.velocity.y, 0f);
-
-        }
-        if (lockVertical)
-        {
-            rigidbody.position = new Vector3(rigidbody.position.x, transform.position.y, rigidbody.position.z);
-            rigidbody.velocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
-        }
-
     }
-
 }

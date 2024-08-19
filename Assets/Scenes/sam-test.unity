@@ -285,7 +285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980434272}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.3502074, z: 0, w: 0.9366722}
   m_LocalPosition: {x: 0, y: 2.69, z: 2.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -307,7 +307,7 @@ MonoBehaviour:
   showBoundsInEditor: 1
   width: 8.6
   height: 3.5
-  angle: 0
+  angle: 41
 --- !u!65 &980434278
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -780,6 +780,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5853826131300950448, guid: ff11a7728645eea43bdf1785b9fd00ac,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7102172561359910906, guid: ff11a7728645eea43bdf1785b9fd00ac,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -835,6 +840,21 @@ PrefabInstance:
       propertyPath: puzzleZone
       value: 
       objectReference: {fileID: 980434277}
+    - target: {fileID: 7495016927083671089, guid: ff11a7728645eea43bdf1785b9fd00ac,
+        type: 3}
+      propertyPath: useGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7495016927083671089, guid: ff11a7728645eea43bdf1785b9fd00ac,
+        type: 3}
+      propertyPath: lockVertical
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7495016927083671089, guid: ff11a7728645eea43bdf1785b9fd00ac,
+        type: 3}
+      propertyPath: lockHorizontal
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7574697869611594645, guid: ff11a7728645eea43bdf1785b9fd00ac,
         type: 3}
       propertyPath: m_Name
