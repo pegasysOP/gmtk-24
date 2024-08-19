@@ -280,6 +280,9 @@ public class AudioSystem : MonoBehaviour
     
     public void PlayNextAmbience()
     {
+        if (currentAmbienceClip >= ambienceMusicClips.Count)
+            return;
+
         ambienceMusicSource.loop = true;
         ambienceMusicSource.clip = ambienceMusicClips[currentAmbienceClip];
         ambienceMusicSource.Play();
