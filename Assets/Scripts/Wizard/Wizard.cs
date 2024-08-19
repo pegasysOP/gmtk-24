@@ -16,9 +16,13 @@ public class Wizard : MonoBehaviour
     public CheckPoint currentCheckPoint;
 
     public GameObject wizardsMagicBeam;
+    public SkinnedMeshRenderer meshRenderer;
+    public GameObject popParticlesContainer;
+    public GameObject[] wizardPopParticles;
 
     public Animator animator;
-    private float chargeAnimLength; 
+    private float chargeAnimLength;
+
 
     private void Awake()
     {
@@ -83,7 +87,8 @@ public class Wizard : MonoBehaviour
             }
             else
             {
-                StartCoroutine(ResetWizard(checkPoint));
+
+                StartCoroutine(PopWizard(checkPoint));
             }
         }
 
@@ -120,6 +125,51 @@ public class Wizard : MonoBehaviour
         }
 
         splineAnimate.Play();
+    }
+
+    private IEnumerator ResetWizard(CheckPoint checkPoint, float delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+
+        UnpopWizard();
+
+        if (!checkPoint.hasCompleted)
+        {
+            splineAnimate.ElapsedTime = time;
+            ResetCheckPoint?.Invoke();
+            yield return new WaitForSeconds(1f);
+            splineAnimate.Play();
+            animator.SetTrigger("Walking");
+            yield break;
+        }
+
+        splineAnimate.Play();
+    }
+
+    private IEnumerator PopWizard(CheckPoint checkPoint)
+    {
+        checkPoint.OnComplete += OnOverTimeCheckPointCompleteEvent;
+        WizardPause();
+        yield return new WaitForSeconds(chargeAnimLength);
+        if (!checkPoint.hasCompleted)
+        {
+            PopWizard();
+        }
+
+        StartCoroutine(ResetWizard(checkPoint, 2f));
+
+    }
+
+    public void PopWizard()
+    {
+        meshRenderer.enabled = false;
+        popParticlesContainer.SetActive(true);
+    }
+
+    public void UnpopWizard()
+    {
+        meshRenderer.enabled = true;
+        popParticlesContainer.SetActive(false);
     }
 
     private void WizardPause()
