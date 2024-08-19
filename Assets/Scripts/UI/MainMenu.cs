@@ -91,41 +91,43 @@ public class MainMenu : MonoBehaviour
 
     public void OnStartClicked()
     {
-        // hack to not break other things 
-        if (SceneManager.GetActiveScene().name == "harry-test chew")
+        GameManager gameManager = GameManager.Instance;
+        if (gameManager == null)
         {
-            GameManager gameManager = GameManager.Instance;
-            if (gameManager == null)
-            {
-                Debug.Log("Game manager is null");
-                return;
-            }
+            Debug.Log("Game manager is null");
+            return;
+        }
 
-            CameraMan cameraMan = gameManager.cameraMan;
-            if (cameraMan == null)
-            {
-                Debug.Log("Camera man is null");
-            }
+        CameraMan cameraMan = gameManager.cameraMan;
+        if (cameraMan == null)
+        {
+            Debug.Log("Camera man is null");
+        }
 
-            if (cameraMan.IsVirtualCameraActive(cameraMan.mainMenuVirtualCamera))
-            {
-                Debug.Log("Start clicked menu cam -> fly cam");
-                cameraMan.TransitionFromMenuToIntro();
-            }
-            else if (cameraMan.IsVirtualCameraActive(cameraMan.gameVirtualCamera) || cameraMan.IsVirtualCameraActive(cameraMan.noInputGameVirtualCamera))
-            {
-                ResumeGame();
-            }
-            else
-            {
-                Debug.Log("No handling for start click");
-            }
+        if (cameraMan.IsVirtualCameraActive(cameraMan.mainMenuVirtualCamera))
+        {
+            Debug.Log("Start clicked menu cam -> fly cam");
+            cameraMan.TransitionFromMenuToIntro();
+        }
+        else if (cameraMan.IsVirtualCameraActive(cameraMan.gameVirtualCamera) || cameraMan.IsVirtualCameraActive(cameraMan.noInputGameVirtualCamera))
+        {
+            ResumeGame();
         }
         else
         {
-            SceneManager.LoadScene("Main");
+            Debug.Log("No handling for start click");
         }
+
         Debug.Log("START");
+
+        //// hack to not break other things 
+        //if (SceneManager.GetActiveScene().name == "harry-test chew")
+        //{
+        //}
+        //else
+        //{
+        //    SceneManager.LoadScene("Main");
+        //}
     }
 
     public void OnExitClicked()

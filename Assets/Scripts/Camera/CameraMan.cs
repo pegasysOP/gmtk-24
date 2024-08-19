@@ -10,6 +10,8 @@ public class CameraMan : MonoBehaviour
     public CinemachineVirtualCamera gameVirtualCamera;
     public CinemachineVirtualCamera noInputGameVirtualCamera;
 
+    public Receptacle menuReceptacle;
+
     public GameObject introGameObj;
     public Animation introCamAnim;
 
@@ -46,7 +48,7 @@ public class CameraMan : MonoBehaviour
             return;
         }
 
-        if (Input.anyKeyDown)
+        if (menuReceptacle.IsCompleted())//Input.anyKeyDown)
         {
             // read for any input if current cam is main menu cam
             if (inMainMenu && IsVirtualCameraActive(mainMenuVirtualCamera))
