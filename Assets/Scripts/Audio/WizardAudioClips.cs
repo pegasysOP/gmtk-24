@@ -11,4 +11,5 @@ public class WizardAudioClips : MonoBehaviour
     public AudioClip wizardBaloon;
     public AudioClip wizardStaffDonk;
     public AudioClip wizardSigh;
+    public AudioClip wizardLetOutAir;
 }

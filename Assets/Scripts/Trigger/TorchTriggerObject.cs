@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TorchTriggerObject : TriggerObject
 {
-    public Light lightToSwitch;
+    public GameObject lightToSwitch;
     public bool startOn;
 
     public bool switchOffAfterTime;
@@ -13,11 +13,11 @@ public class TorchTriggerObject : TriggerObject
     {
         if (startOn)
         {
-            lightToSwitch.enabled = true;
+            lightToSwitch.SetActive(true);
         }
         else
         {
-            lightToSwitch.enabled = false;
+            lightToSwitch.SetActive(false);
         }
     }
 
@@ -42,13 +42,13 @@ public class TorchTriggerObject : TriggerObject
 
     private void Switch()
     {
-        if (lightToSwitch.enabled)
+        if (lightToSwitch.activeSelf)
         {
-            lightToSwitch.enabled = false;
+            lightToSwitch.SetActive(false);
         }
         else
         {
-            lightToSwitch.enabled = true;
+            lightToSwitch.SetActive(true);
         }
     }
 
@@ -58,11 +58,11 @@ public class TorchTriggerObject : TriggerObject
 
         if (startOn)
         {
-            lightToSwitch.enabled = true;
+            lightToSwitch.SetActive(true);
         }
         else
         {
-            lightToSwitch.enabled = false;
+            lightToSwitch.SetActive(false);
         }
     }
 }

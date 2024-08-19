@@ -5,6 +5,8 @@ using UnityEngine.Splines;
 
 public class Wizard : MonoBehaviour
 {
+    public static Wizard Instance;
+
     private SplineAnimate splineAnimate;
     private float splineTotalTime;
     public Action<CheckPoint> CheckPointTrigger;
@@ -16,9 +18,13 @@ public class Wizard : MonoBehaviour
     public GameObject wizardsMagicBeam;
 
     public Animator animator;
+    private float chargeAnimLength; 
 
     private void Awake()
     {
+        if (Instance == null)
+            Instance = this;
+
         splineAnimate = GetComponent<SplineAnimate>();
     }
 
@@ -36,7 +42,7 @@ public class Wizard : MonoBehaviour
     private void OnStartGameEvent()
     {
         animator.SetTrigger("Walking");
-        GameManager.Instance.audioSystem.StartWalking();
+        //GameManager.Instance.audioSystem.StartWalking();
         splineAnimate.Play();
     }
 
@@ -85,6 +91,11 @@ public class Wizard : MonoBehaviour
         {
             trigger.Trigger();
         }
+
+        if (collider.GetComponent<AmbienceTrigger>())
+        {
+            GameManager.Instance.audioSystem.PlayNextAmbience();
+        }
     }
 
     public bool IsWalking()
@@ -96,15 +107,12 @@ public class Wizard : MonoBehaviour
     {
         checkPoint.OnComplete += OnOverTimeCheckPointCompleteEvent;
         WizardPause();
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(chargeAnimLength);
 
         if (!checkPoint.hasCompleted)
         {
-            GameManager.Instance.audioSystem.PlayWizardPop();
-            yield return new WaitForSeconds(2f);
             splineAnimate.ElapsedTime = time;
             ResetCheckPoint?.Invoke();
-            //this is basically you losing here and resetting
             yield return new WaitForSeconds(1f);
             splineAnimate.Play();
             animator.SetTrigger("Walking");
@@ -117,20 +125,17 @@ public class Wizard : MonoBehaviour
     private void WizardPause()
     {
         splineAnimate.Pause();
-        GameManager.Instance.audioSystem.StopWalking();
         animator.SetTrigger("Angry");
-        Debug.Log($"Wizard is getting angry. Hurry up.");
-        GameManager.Instance.audioSystem.StartAngry();
+        if (chargeAnimLength == 0)
+            chargeAnimLength = animator.GetCurrentAnimatorStateInfo(0).length;
     }
 
     private void OnOverTimeCheckPointCompleteEvent()
     {
+        GameManager.Instance.audioSystem.OnResetCheckPoint();
         currentCheckPoint.OnComplete -= OnOverTimeCheckPointCompleteEvent;
         StopAllCoroutines();
-        GameManager.Instance.audioSystem.StopAngry();
         animator.SetTrigger("Walking");
-        Debug.Log($"Wizard starts to move again.");
         splineAnimate.Play();
-        GameManager.Instance.audioSystem.StartWalking();
     }
 }
