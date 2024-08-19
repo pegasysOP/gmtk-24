@@ -13,6 +13,8 @@ public class FollowTarget : MonoBehaviour
     public bool avoidPositionUpdate;
     [Range(-45f, 45f)]
     public float rotateOffset;
+    // height offset for camera above wizzward this is to point down as the camera sits above the wizzy
+    private float heightOffset = 10f;
 
     private void LateUpdate()
     {
@@ -24,7 +26,7 @@ public class FollowTarget : MonoBehaviour
             transform.position += new Vector3(positionOffset.x, positionOffset.y, 0);
         }
 
-        Vector3 offsetLookat = new Vector3(rotatePoint.position.x, this.transform.position.y, rotatePoint.position.z);
+        Vector3 offsetLookat = new Vector3(rotatePoint.position.x, this.transform.position.y - heightOffset , rotatePoint.position.z);
         transform.LookAt(offsetLookat);
     }
 }

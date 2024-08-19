@@ -29,7 +29,6 @@ public class CameraMan : MonoBehaviour
     {
         Debug.Log("cam 1: " + newCam.Name + " cam 2:" + previousCam.Name);
         // Camera has changed
-        //gameVirtualCamera = currentCamera;
         if (OnCameraTransition != null)
         {
             Debug.Log("event fired with new cam: " + newCam.Name);
@@ -37,34 +36,25 @@ public class CameraMan : MonoBehaviour
         }
     }
 
-    //private void OnCameraUpdated(CinemachineBrain brain)
-    //{
-    //    // Get the currently active virtual camera
-    //    CinemachineVirtualCamera currentCamera = brain.ActiveVirtualCamera as CinemachineVirtualCamera;
-    //    Debug.Log("cut camera changed to: " + currentCamera.Name);
-
-    //    if (currentCamera.name != gameVirtualCamera.name)
-    //    {
-    //        // Camera has changed
-    //        gameVirtualCamera = currentCamera;
-    //        if (OnCameraTransition != null)
-    //        {
-    //            Debug.Log("event fired with cam: " + currentCamera.Name);
-
-    //            OnCameraTransition(currentCamera.name);
-    //        }
-    //    }
-    //}
-
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            Debug.Log("straight to game");
+            mainMenuVirtualCamera.Priority = 8;
+            gameVirtualCamera.Priority = 12;
+            return;
+        }
+
         if (Input.anyKeyDown)
         {
             // read for any input if current cam is main menu cam
             if (inMainMenu && IsVirtualCameraActive(mainMenuVirtualCamera))
             {
-                Debug.Log("main menu");
-                TransitionFromMenuToIntro();
+                {
+                    Debug.Log("any input received menu cam -> fly cam");
+                    TransitionFromMenuToIntro();
+                }
             }
         }
 
@@ -87,6 +77,12 @@ public class CameraMan : MonoBehaviour
         introGameObj.SetActive(true);
         mainMenuVirtualCamera.Priority = 8;
         introCamAnim.Play();
+    }
+
+    public void ForceGameCam()
+    {
+        mainMenuVirtualCamera.Priority = 8;
+        gameVirtualCamera.Priority = 12;
     }
 
     public bool IsVirtualCameraActive(CinemachineVirtualCamera virtualCamera)

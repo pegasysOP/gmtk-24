@@ -191,8 +191,10 @@ public class AudioSystem : MonoBehaviour
     public void SetWindVolume(float elapsed, float total)
     {
         float volume = map(elapsed, 0, total, -25f, 0);
-
+        if (mainMix == null)
+            return;
         Debug.Log($"{volume}");
+
         mainMix.SetFloat("WindVolume", volume);
     }
 

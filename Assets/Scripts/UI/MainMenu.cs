@@ -30,35 +30,28 @@ public class MainMenu : MonoBehaviour
                 // checks if menu container game object is open
                 SetMenu(menuContainer.activeInHierarchy);
             }
+            else if (IsInFlyThroughCam())
+            {
+                Debug.Log("is in fly cam");
+                GameManager gameManager = GameManager.Instance;
+                if (gameManager == null)
+                {
+                    Debug.Log("Game manager is null");
+                    return;
+                }
+
+                CameraMan cameraMan = gameManager.cameraMan;
+                if (cameraMan == null)
+                {
+                    Debug.Log("Camera man is null");
+                }
+                cameraMan.ForceGameCam();
+            }
             else
             {
                 Debug.Log("Ignoring ESC as not in game camera");
             }
         }
-    }
-
-    private bool IsInGameCam()
-    {
-        GameManager gameManager = GameManager.Instance;
-        if (gameManager == null)
-        {
-            Debug.Log("Game manager is null");
-            return false;
-        }
-
-        CameraMan cameraMan = gameManager.cameraMan;
-        if (cameraMan == null)
-        {
-            Debug.Log("Camera man is null");
-            return false;
-        }
-
-        if (cameraMan.IsVirtualCameraActive(cameraMan.gameVirtualCamera) || cameraMan.IsVirtualCameraActive(cameraMan.noInputGameVirtualCamera))
-        {
-            return true;
-        }
-
-        return false;
     }
 
     private void SetMenu(bool isMenuOpen)
@@ -116,6 +109,7 @@ public class MainMenu : MonoBehaviour
 
             if (cameraMan.IsVirtualCameraActive(cameraMan.mainMenuVirtualCamera))
             {
+                Debug.Log("Start clicked menu cam -> fly cam");
                 cameraMan.TransitionFromMenuToIntro();
             }
             else if (cameraMan.IsVirtualCameraActive(cameraMan.gameVirtualCamera) || cameraMan.IsVirtualCameraActive(cameraMan.noInputGameVirtualCamera))
@@ -149,5 +143,54 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat(MasterVolumeKey, newValue);
         PlayerPrefs.Save();
+    }
+
+
+    private bool IsInGameCam()
+    {
+        GameManager gameManager = GameManager.Instance;
+        if (gameManager == null)
+        {
+            Debug.Log("Game manager is null");
+            return false;
+        }
+
+        CameraMan cameraMan = gameManager.cameraMan;
+        if (cameraMan == null)
+        {
+            Debug.Log("Camera man is null");
+            return false;
+        }
+
+        if (cameraMan.IsVirtualCameraActive(cameraMan.gameVirtualCamera) || cameraMan.IsVirtualCameraActive(cameraMan.noInputGameVirtualCamera))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool IsInFlyThroughCam()
+    {
+        GameManager gameManager = GameManager.Instance;
+        if (gameManager == null)
+        {
+            Debug.Log("Game manager is null");
+            return false;
+        }
+
+        CameraMan cameraMan = gameManager.cameraMan;
+        if (cameraMan == null)
+        {
+            Debug.Log("Camera man is null");
+            return false;
+        }
+
+        if (cameraMan.IsVirtualCameraActive(cameraMan.flyThroughVirtualCamera))
+        {
+            return true;
+        }
+
+        return false;
     }
 }
