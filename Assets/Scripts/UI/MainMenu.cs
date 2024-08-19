@@ -32,7 +32,6 @@ public class MainMenu : MonoBehaviour
             }
             else if (IsInFlyThroughCam())
             {
-                Debug.Log("is in fly cam");
                 GameManager gameManager = GameManager.Instance;
                 if (gameManager == null)
                 {

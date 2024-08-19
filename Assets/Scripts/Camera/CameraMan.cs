@@ -31,7 +31,6 @@ public class CameraMan : MonoBehaviour
         // Camera has changed
         if (OnCameraTransition != null)
         {
-            Debug.Log("event fired with new cam: " + newCam.Name);
             OnCameraTransition(newCam.Name, previousCam.Name);
         }
     }
@@ -65,7 +64,6 @@ public class CameraMan : MonoBehaviour
             EnableCameraInputReading(allowInput);
             allowInput = !allowInput;
         }
-
     }
 
     /// <summary>
