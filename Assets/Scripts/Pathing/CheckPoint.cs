@@ -2,8 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class CheckPoint : MonoBehaviour
 {
+    [Header("Collider")]
+    public BoxCollider boxCollider;
+    public bool showBoundsInEditor = true;
+
+    [Header("Properties")]
     public Action OnComplete;
     public bool hasCompleted;
 
@@ -20,7 +26,19 @@ public class CheckPoint : MonoBehaviour
 
     public void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(gameObject.transform.position, new Vector3(2f, 1, 0.2f));
+        if (!showBoundsInEditor)
+            return;
+
+        Matrix4x4 matrix = Gizmos.matrix;
+        Color color = Gizmos.color;
+
+        Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireCube(boxCollider.center, boxCollider.size);
+
+        Gizmos.matrix = matrix;
+        Gizmos.color = color;
     }
 
     public void DoReset()
