@@ -83,4 +83,9 @@ public class Receptacle : MonoBehaviour
 
         solutions.Add(newSolution);
     }
+
+    public bool IsCompleted()
+    {
+        return completed;
+    }    
 }
