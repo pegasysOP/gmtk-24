@@ -9,9 +9,11 @@ public class Wizard : MonoBehaviour
 
     private SplineAnimate splineAnimate;
     private float splineTotalTime;
-    public Action<CheckPoint> CheckPointTrigger;
-    public Action ResetCheckPoint;
-    public float time;
+
+    public RespawnPoint currentRespawnPoint;
+    public Action<RespawnPoint> RespawnPointReached;
+    public Action RespawnPointReset;
+    public float respawnSplineTime;
 
     public CheckPoint currentCheckPoint;
 
@@ -76,20 +78,23 @@ public class Wizard : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+        // save respawn point for later
+        if (collider.TryGetComponent<RespawnPoint>(out RespawnPoint respawnPoint))
+        {
+            Debug.LogWarning("Respawn Point Reached");
+            currentRespawnPoint = respawnPoint;
+            respawnSplineTime = splineAnimate.ElapsedTime;
+
+            RespawnPointReached?.Invoke(respawnPoint);
+        }
+
+        // stop at checkpoint until complete
         if (collider.TryGetComponent<CheckPoint>(out CheckPoint checkPoint))
         {
-            currentCheckPoint = checkPoint;
-            if (checkPoint.hasCompleted)
-            {
-                CheckPointTrigger?.Invoke(checkPoint);
-                time = splineAnimate.ElapsedTime;
-                Debug.Log($"Time: {time}");
-            }
-            else
-            {
+            Debug.LogWarning("Puzzle Check Point Reached");
 
+            if (!checkPoint.hasCompleted)
                 StartCoroutine(PopWizard(checkPoint));
-            }
         }
 
         if (collider.TryGetComponent<TriggerCollider>(out TriggerCollider trigger))
@@ -108,24 +113,24 @@ public class Wizard : MonoBehaviour
         return splineAnimate.IsPlaying;
     }
 
-    private IEnumerator ResetWizard(CheckPoint checkPoint)
-    {
-        checkPoint.OnComplete += OnOverTimeCheckPointCompleteEvent;
-        WizardPause();
-        yield return new WaitForSeconds(chargeAnimLength);
-
-        if (!checkPoint.hasCompleted)
-        {
-            splineAnimate.ElapsedTime = time;
-            ResetCheckPoint?.Invoke();
-            yield return new WaitForSeconds(1f);
-            splineAnimate.Play();
-            animator.SetTrigger("Walking");
-            yield break;
-        }
-
-        splineAnimate.Play();
-    }
+   //private IEnumerator ResetWizard(CheckPoint checkPoint)
+   //{
+   //    checkPoint.OnComplete += OnOverTimeCheckPointCompleteEvent;
+   //    WizardPause();
+   //    yield return new WaitForSeconds(chargeAnimLength);
+   //
+   //    if (!checkPoint.hasCompleted)
+   //    {
+   //        splineAnimate.ElapsedTime = respawnSplineTime;
+   //        RespawnPointReset?.Invoke();
+   //        yield return new WaitForSeconds(1f);
+   //        splineAnimate.Play();
+   //        animator.SetTrigger("Walking");
+   //        yield break;
+   //    }
+   //
+   //    splineAnimate.Play();
+   //}
 
     private IEnumerator ResetWizard(CheckPoint checkPoint, float delaySeconds)
     {
@@ -135,8 +140,8 @@ public class Wizard : MonoBehaviour
 
         if (!checkPoint.hasCompleted)
         {
-            splineAnimate.ElapsedTime = time;
-            ResetCheckPoint?.Invoke();
+            splineAnimate.ElapsedTime = respawnSplineTime;
+            RespawnPointReset?.Invoke();
             yield return new WaitForSeconds(1f);
             splineAnimate.Play();
             animator.SetTrigger("Walking");
@@ -148,16 +153,15 @@ public class Wizard : MonoBehaviour
 
     private IEnumerator PopWizard(CheckPoint checkPoint)
     {
+        currentCheckPoint = checkPoint;
         checkPoint.OnComplete += OnOverTimeCheckPointCompleteEvent;
         WizardPause();
         yield return new WaitForSeconds(chargeAnimLength);
-        if (!checkPoint.hasCompleted)
-        {
-            PopWizard();
-        }
+        if (checkPoint.hasCompleted)
+            yield return null;
 
+        PopWizard();
         StartCoroutine(ResetWizard(checkPoint, 2f));
-
     }
 
     public void PopWizard()
@@ -182,8 +186,10 @@ public class Wizard : MonoBehaviour
 
     private void OnOverTimeCheckPointCompleteEvent()
     {
-        GameManager.Instance.audioSystem.OnResetCheckPoint();
+        GameManager.Instance.audioSystem.OnRespawnPointReset();
         currentCheckPoint.OnComplete -= OnOverTimeCheckPointCompleteEvent;
+        currentCheckPoint = null;
+
         StopAllCoroutines();
         animator.SetTrigger("Walking");
         splineAnimate.Play();

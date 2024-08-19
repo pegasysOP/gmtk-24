@@ -37,7 +37,7 @@ public class AudioSystem : MonoBehaviour
 
     private void Start()
     {
-        Wizard.Instance.ResetCheckPoint += OnResetCheckPoint;
+        Wizard.Instance.RespawnPointReset += OnRespawnPointReset;
 
 
         for (int i = 0; i < 10; i++) 
@@ -55,7 +55,7 @@ public class AudioSystem : MonoBehaviour
         }
     }
 
-    public void OnResetCheckPoint()
+    public void OnRespawnPointReset()
     {
         foreach (AudioSource source in wizardSources) 
         {
