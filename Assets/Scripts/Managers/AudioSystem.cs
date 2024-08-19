@@ -30,8 +30,16 @@ public class AudioSystem : MonoBehaviour
     public AudioSource lowWind;
     public AudioSource highWind;
 
+    [Header("Ambience Music")]
+    public AudioSource ambienceMusicSource;
+    public List<AudioClip> ambienceMusicClips = new List<AudioClip>();
+    public int currentAmbienceClip = 0;
+
     private void Start()
     {
+        Wizard.Instance.ResetCheckPoint += OnResetCheckPoint;
+
+
         for (int i = 0; i < 10; i++) 
         {
             AudioSource dragSource = dragSourceObject.AddComponent<AudioSource>();
@@ -46,6 +54,20 @@ public class AudioSystem : MonoBehaviour
             wizardSources.Add(wizardSource);
         }
     }
+
+    public void OnResetCheckPoint()
+    {
+        foreach (AudioSource source in wizardSources) 
+        {
+            source.Stop();
+        }
+
+        foreach (AudioSource source in audioSources)
+        {
+            source.Stop();
+        }
+    }
+
     public void PlayMusic()
     {
         if (musicSource == null || musicSource.isPlaying)
@@ -105,7 +127,7 @@ public class AudioSystem : MonoBehaviour
         }
     }
 
-    private void PlayWizardFootstep()
+    public void PlayWizardFootstep()
     {
         foreach (AudioSource source in wizardSources)
         {
@@ -122,7 +144,7 @@ public class AudioSystem : MonoBehaviour
     public void StartAngry()
     {
         Debug.Log($"Angry audio called");
-        StartCoroutine(AngryCoroutine());
+        //StartCoroutine(AngryCoroutine());
     }
 
     public void StopAngry()
@@ -157,6 +179,45 @@ public class AudioSystem : MonoBehaviour
         }
     }
 
+    public void PlayWizardChargeStart()
+    {
+        foreach (AudioSource source in wizardSources)
+        {
+            if (source != null && !source.isPlaying)
+            {
+                source.clip = wizardAudioClips.wizardSigh;
+                source.Play();
+                break;
+            }
+        }
+    }
+
+    public void PlayWizardChargeThree()
+    {
+        foreach (AudioSource source in wizardSources)
+        {
+            if (source != null && !source.isPlaying)
+            {
+                source.clip = wizardAudioClips.wizardLetOutAir;
+                source.Play();
+                break;
+            }
+        }
+    }
+
+    public void PlayWizardChargeTwo()
+    {
+        foreach (AudioSource source in wizardSources)
+        {
+            if (source != null && !source.isPlaying)
+            {
+                source.clip = wizardAudioClips.wizardBaloon;
+                source.Play();
+                break;
+            }
+        }
+    }
+
     public void PlayWizardStaffBonk()
     {
         foreach (AudioSource source in wizardSources)
@@ -164,6 +225,19 @@ public class AudioSystem : MonoBehaviour
             if (source != null && !source.isPlaying)
             {
                 source.clip = wizardAudioClips.wizardStaffDonk;
+                source.Play();
+                break;
+            }
+        }
+    }
+
+    public void PlayWizardExplode()
+    {
+        foreach (AudioSource source in wizardSources)
+        {
+            if (source != null && !source.isPlaying)
+            {
+                source.clip = wizardAudioClips.wizardPop;
                 source.Play();
                 break;
             }
@@ -200,5 +274,13 @@ public class AudioSystem : MonoBehaviour
     {
         lowWind.Play();
         highWind.Play();
+    }
+    
+    public void PlayNextAmbience()
+    {
+        ambienceMusicSource.loop = true;
+        ambienceMusicSource.clip = ambienceMusicClips[currentAmbienceClip];
+        ambienceMusicSource.Play();
+        currentAmbienceClip++;
     }
 }
