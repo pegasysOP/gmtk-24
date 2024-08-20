@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
 
     public GameObject menuContainer;
     public TextMeshProUGUI startButtonText;
+    public GameObject quitGameButton;
     protected bool isInTitleMenu;
 
     private void Awake()
@@ -19,6 +20,10 @@ public class MainMenu : MonoBehaviour
         volumeSlider.value = PlayerPrefs.GetFloat(MasterVolumeKey, 0.5f);   
         PlayerPrefs.SetFloat(MasterVolumeKey, volumeSlider.value);
         volumeSlider.onValueChanged.AddListener(OnVolumeValueChanged);
+
+#if UNITY_WEBGL
+        quitGameButton.SetActive(false);
+#endif 
     }
 
     public void Update()
@@ -29,6 +34,7 @@ public class MainMenu : MonoBehaviour
             {
                 // checks if menu container game object is open
                 SetMenu(menuContainer.activeInHierarchy);
+                startButtonText.text = "RESUME";
             }
             else if (IsInFlyThroughCam())
             {
@@ -131,8 +137,10 @@ public class MainMenu : MonoBehaviour
 
     public void OnExitClicked()
     {
+#if !UNITY_WEBGL
         Application.Quit();
         Debug.Log("QUIT");
+#endif
     }
 
     protected virtual void OnVolumeValueChanged(float newValue)
