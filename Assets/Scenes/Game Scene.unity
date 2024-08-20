@@ -4304,7 +4304,7 @@ PrefabInstance:
     - target: {fileID: 1843925534635200593, guid: c2b2413761e8e6f46b1a7e9e99fd9100,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 7.97798
+      value: 4.27
       objectReference: {fileID: 0}
     - target: {fileID: 1843925534635200593, guid: c2b2413761e8e6f46b1a7e9e99fd9100,
         type: 3}
@@ -5336,9 +5336,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetDraggable: {fileID: 1394313736}
   checkpoint: {fileID: 1365693899}
-  magnetiseDistance: 1.04
-  magnetiseRotation: 91
-  magnetiseScale: 1.2
+  magnetiseDistance: 1.76
+  magnetiseRotation: 119
+  magnetiseScale: 1.62
   magnetiseDuration: 0.5
   solutions:
   - Position: {x: 0.8274689, y: -11.77, z: 3.2022934}
