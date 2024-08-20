@@ -267,7 +267,7 @@ public class AudioSystem : MonoBehaviour
         float volume = map(elapsed, 0, total, -25f, 0);
         if (mainMix == null)
             return;
-        Debug.Log($"{volume}");
+        //Debug.Log($"{volume}");
 
         mainMix.SetFloat("WindVolume", volume);
     }
