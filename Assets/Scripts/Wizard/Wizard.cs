@@ -95,6 +95,9 @@ public class Wizard : MonoBehaviour
 
             if (!checkPoint.hasCompleted)
                 StartCoroutine(PopWizard(checkPoint));
+
+            else
+                currentCheckPoint = checkPoint;
         }
 
         if (collider.TryGetComponent<TriggerCollider>(out TriggerCollider trigger))
