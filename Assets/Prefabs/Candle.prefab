@@ -214,17 +214,17 @@ PrefabInstance:
     - target: {fileID: 672456070930446960, guid: e1b81f6e402e1b348a41af893176bc79,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 40.054
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 672456070930446960, guid: e1b81f6e402e1b348a41af893176bc79,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 40.054
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 672456070930446960, guid: e1b81f6e402e1b348a41af893176bc79,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 40.054
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 672456070930446960, guid: e1b81f6e402e1b348a41af893176bc79,
         type: 3}
@@ -280,6 +280,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mesh Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467363229256702247, guid: e1b81f6e402e1b348a41af893176bc79,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: -0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
