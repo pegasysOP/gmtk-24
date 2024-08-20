@@ -31,6 +31,7 @@ public class DraggableObject : MonoBehaviour, IDraggable
     public bool lockVertical = false;
     public bool stayLocked = true;
     private bool initialStayLocked;
+    public RigidbodyConstraints defaultConstraints = RigidbodyConstraints.None;
 
     [Header("Impacts")]
     public float impactForceThreshold = 1f;
@@ -68,7 +69,7 @@ public class DraggableObject : MonoBehaviour, IDraggable
 
         rigidBody.interpolation = RigidbodyInterpolation.Interpolate;
         rigidBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        rigidBody.constraints = RigidbodyConstraints.None;
+        rigidBody.constraints = defaultConstraints;
         rigidBody.useGravity = useGravity;
 
         initialStayLocked = stayLocked;
@@ -87,7 +88,7 @@ public class DraggableObject : MonoBehaviour, IDraggable
 
         rigidBody.interpolation = RigidbodyInterpolation.Interpolate;
         rigidBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        rigidBody.constraints = RigidbodyConstraints.None;
+        rigidBody.constraints = defaultConstraints;
         rigidBody.useGravity = useGravity;
 
         initialStayLocked = stayLocked;
@@ -185,7 +186,7 @@ public class DraggableObject : MonoBehaviour, IDraggable
         }
         else
         {
-            rigidBody.constraints = RigidbodyConstraints.None;
+            rigidBody.constraints = defaultConstraints;
         }
     }
 
