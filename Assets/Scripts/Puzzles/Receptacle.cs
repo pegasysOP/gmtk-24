@@ -22,6 +22,7 @@ public class Receptacle : MonoBehaviour
 
     [Header("Solution")]
     [SerializeField] private List<Solution> solutions;
+    public bool forceLock = false;
 
     //[SerializeField] private Vector3 solutionPosition;
     //[SerializeField] private Quaternion solutionRotation;
@@ -53,6 +54,8 @@ public class Receptacle : MonoBehaviour
 
             completed = true;
             targetDraggable.AnimateToSolution(solution.Position + transform.position, solution.Rotation, solution.Scale, magnetiseDuration);
+            if (forceLock)
+                targetDraggable.stayLocked = true;
 
             checkpoint?.Complete();
             Debug.Log("CHECKPOINT COMPLETE");

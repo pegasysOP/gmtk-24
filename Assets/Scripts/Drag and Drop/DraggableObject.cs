@@ -30,6 +30,7 @@ public class DraggableObject : MonoBehaviour, IDraggable
     public bool lockHorizontal = false;
     public bool lockVertical = false;
     public bool stayLocked = true;
+    private bool initialStayLocked;
 
     [Header("Impacts")]
     public float impactForceThreshold = 1f;
@@ -69,6 +70,8 @@ public class DraggableObject : MonoBehaviour, IDraggable
         rigidBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rigidBody.constraints = RigidbodyConstraints.None;
         rigidBody.useGravity = useGravity;
+
+        initialStayLocked = stayLocked;
     }
 
     private void OnValidate()
@@ -86,6 +89,8 @@ public class DraggableObject : MonoBehaviour, IDraggable
         rigidBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rigidBody.constraints = RigidbodyConstraints.None;
         rigidBody.useGravity = useGravity;
+
+        initialStayLocked = stayLocked;
     }
 
     private void Update()
@@ -197,6 +202,8 @@ public class DraggableObject : MonoBehaviour, IDraggable
 
         Lock(false);
         SetSelected(false);
+
+        stayLocked = initialStayLocked;
     }
 
     public Vector3 GetPosition()
