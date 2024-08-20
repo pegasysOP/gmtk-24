@@ -182,6 +182,9 @@ public class Wizard : MonoBehaviour
 
     private void OnOverTimeCheckPointCompleteEvent()
     {
+        // just incase he popped and never came back
+        UnpopWizard();
+
         GameManager.Instance.audioSystem.OnResetCheckPoint();
         currentCheckPoint.OnComplete -= OnOverTimeCheckPointCompleteEvent;
         StopAllCoroutines();
