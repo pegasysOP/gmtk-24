@@ -54,6 +54,23 @@ public class DraggableObject : MonoBehaviour, IDraggable
     private UnityEvent onLocked = new UnityEvent();
     public UnityEvent OnLocked { get { return onLocked; } }
 
+    public void Start()
+    {
+        rigidBody = GetComponent<Rigidbody>();
+
+        startPosition = transform.position;
+        startRotation = transform.rotation;
+        startScale = transform.localScale;
+
+        defaultMovementDamping = rigidBody.drag;
+        defaultRotationDamping = rigidBody.angularDrag;
+
+        rigidBody.interpolation = RigidbodyInterpolation.Interpolate;
+        rigidBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        rigidBody.constraints = RigidbodyConstraints.None;
+        rigidBody.useGravity = useGravity;
+    }
+
     private void OnValidate()
     {
         rigidBody = GetComponent<Rigidbody>();

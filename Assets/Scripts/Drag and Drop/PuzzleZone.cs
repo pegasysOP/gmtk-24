@@ -12,6 +12,17 @@ public class PuzzleZone : MonoBehaviour
     BoxCollider boxCollider;
     Plane plane;
 
+    public void Start()
+    {
+        boxCollider = GetComponent<BoxCollider>();
+        boxCollider.isTrigger = true;
+        boxCollider.size = new Vector3(width, height, 0f);
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        transform.eulerAngles = new Vector3(0f, angle, 0f);
+
+        plane = new Plane(transform.forward, transform.position);
+    }
+
     private void OnValidate()
     {
         boxCollider = GetComponent<BoxCollider>();
