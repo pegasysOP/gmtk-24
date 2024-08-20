@@ -33,7 +33,7 @@ public class CheckPoint : MonoBehaviour
         Color color = Gizmos.color;
 
         Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
 
         Gizmos.DrawWireCube(boxCollider.center, boxCollider.size);
 
