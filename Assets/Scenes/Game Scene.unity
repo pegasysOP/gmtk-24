@@ -242,10 +242,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 889251605}
     m_Modifications:
+    - target: {fileID: 1790755175594371284, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3517026051483566087, guid: 1b923f4ffb468214e8b571389aaabfce,
         type: 3}
       propertyPath: m_Name
       value: Receptacle Boulder Move Puzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3692558268341196287, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4690736726156302308, guid: 1b923f4ffb468214e8b571389aaabfce,
         type: 3}
@@ -311,6 +321,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -11.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711677448218821430, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
         type: 3}
@@ -1225,7 +1240,7 @@ PrefabInstance:
     - target: {fileID: 1920833784682275555, guid: c04f8a8c868b4934ebae32924d701cbd,
         type: 3}
       propertyPath: showBoundsInEditor
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3382293245731047825, guid: c04f8a8c868b4934ebae32924d701cbd,
         type: 3}
@@ -1502,6 +1517,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wizard Mountain
       objectReference: {fileID: 0}
+    - target: {fileID: 3102871683694372396, guid: 3c3f9652d38a82e4092fc66db56b77fd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3151327010642236660, guid: 3c3f9652d38a82e4092fc66db56b77fd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1765,10 +1785,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2074416070}
     m_Modifications:
+    - target: {fileID: 1790755175594371284, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3517026051483566087, guid: 1b923f4ffb468214e8b571389aaabfce,
         type: 3}
       propertyPath: m_Name
       value: Receptacle Boulder Move Puzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3692558268341196287, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4690736726156302308, guid: 1b923f4ffb468214e8b571389aaabfce,
         type: 3}
@@ -1835,6 +1865,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6711677448218821430, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
         type: 3}
       propertyPath: checkpoint
@@ -1853,7 +1888,7 @@ PrefabInstance:
     - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
         type: 3}
       propertyPath: solutions.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
         type: 3}
@@ -1898,6 +1933,21 @@ PrefabInstance:
     - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
         type: 3}
       propertyPath: solutions.Array.data[2].Scale.z
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: solutions.Array.data[3].Scale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: solutions.Array.data[3].Scale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: solutions.Array.data[3].Scale.z
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
@@ -2005,6 +2055,41 @@ PrefabInstance:
       propertyPath: solutions.Array.data[2].Rotation.z
       value: -0.055330455
       objectReference: {fileID: 0}
+    - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: solutions.Array.data[3].Position.x
+      value: -0.45938873
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: solutions.Array.data[3].Position.y
+      value: 7.999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: solutions.Array.data[3].Position.z
+      value: -1.1316605
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: solutions.Array.data[3].Rotation.w
+      value: 0.23344542
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: solutions.Array.data[3].Rotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: solutions.Array.data[3].Rotation.y
+      value: 0.9723699
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962782790819258413, guid: 1b923f4ffb468214e8b571389aaabfce,
+        type: 3}
+      propertyPath: solutions.Array.data[3].Rotation.z
+      value: -0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2110,12 +2195,12 @@ PrefabInstance:
     - target: {fileID: 7984735319781589345, guid: 65a6b0c41f331354194fe4bfea915310,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.04
+      value: -15.53
       objectReference: {fileID: 0}
     - target: {fileID: 7984735319781589345, guid: 65a6b0c41f331354194fe4bfea915310,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.21
+      value: -1.07
       objectReference: {fileID: 0}
     - target: {fileID: 7984735319781589345, guid: 65a6b0c41f331354194fe4bfea915310,
         type: 3}
