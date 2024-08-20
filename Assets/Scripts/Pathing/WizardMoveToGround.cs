@@ -12,9 +12,9 @@ public class WizardMoveToGround : MonoBehaviour
         {
             wizard.transform.position = hit.point;
         }
-        else
-        {
-            wizard.transform.position = transform.position;
-        }
+        //else
+        //{
+        //    wizard.transform.position = transform.position;
+        //}
     }
 }
