@@ -845,13 +845,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4714262799186947615, guid: edee8319b97cc354487dc4df61679fc9,
         type: 3}
+      propertyPath: m_Flip.x
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714262799186947615, guid: edee8319b97cc354487dc4df61679fc9,
+        type: 3}
       propertyPath: m_MeshDistribution
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714262799186947615, guid: edee8319b97cc354487dc4df61679fc9,
+        type: 3}
+      propertyPath: m_EnableGPUInstancing
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9131761259243810880, guid: edee8319b97cc354487dc4df61679fc9,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: -15.16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9131761259243810880, guid: edee8319b97cc354487dc4df61679fc9,
         type: 3}
@@ -862,6 +872,21 @@ PrefabInstance:
         type: 3}
       propertyPath: RotationModule.y.scalar
       value: 0.17453292
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131761259243810880, guid: edee8319b97cc354487dc4df61679fc9,
+        type: 3}
+      propertyPath: ShapeModule.m_Rotation.x
+      value: 10.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131761259243810880, guid: edee8319b97cc354487dc4df61679fc9,
+        type: 3}
+      propertyPath: ShapeModule.m_Rotation.y
+      value: -1.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131761259243810880, guid: edee8319b97cc354487dc4df61679fc9,
+        type: 3}
+      propertyPath: ShapeModule.m_Rotation.z
+      value: 163.28
       objectReference: {fileID: 0}
     - target: {fileID: 9131761259243810880, guid: edee8319b97cc354487dc4df61679fc9,
         type: 3}
@@ -1043,13 +1068,23 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4714262799186947615, guid: edee8319b97cc354487dc4df61679fc9,
         type: 3}
+      propertyPath: m_Flip.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714262799186947615, guid: edee8319b97cc354487dc4df61679fc9,
+        type: 3}
       propertyPath: m_MeshDistribution
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714262799186947615, guid: edee8319b97cc354487dc4df61679fc9,
+        type: 3}
+      propertyPath: m_EnableGPUInstancing
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9131761259243810880, guid: edee8319b97cc354487dc4df61679fc9,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: -15.16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9131761259243810880, guid: edee8319b97cc354487dc4df61679fc9,
         type: 3}
@@ -1060,6 +1095,21 @@ PrefabInstance:
         type: 3}
       propertyPath: RotationModule.y.scalar
       value: 0.17453292
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131761259243810880, guid: edee8319b97cc354487dc4df61679fc9,
+        type: 3}
+      propertyPath: ShapeModule.m_Rotation.x
+      value: 10.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131761259243810880, guid: edee8319b97cc354487dc4df61679fc9,
+        type: 3}
+      propertyPath: ShapeModule.m_Rotation.y
+      value: -1.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131761259243810880, guid: edee8319b97cc354487dc4df61679fc9,
+        type: 3}
+      propertyPath: ShapeModule.m_Rotation.z
+      value: 163.28
       objectReference: {fileID: 0}
     - target: {fileID: 9131761259243810880, guid: edee8319b97cc354487dc4df61679fc9,
         type: 3}

@@ -7,7 +7,7 @@ public class Wizard : MonoBehaviour
 {
     public static Wizard Instance;
 
-    private SplineAnimate splineAnimate;
+    public SplineAnimate splineAnimate;
     private float splineTotalTime;
 
     public RespawnPoint currentRespawnPoint;
@@ -78,6 +78,31 @@ public class Wizard : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+        if (collider.name == "Bespoke trigger")
+        {
+            GameManager gameManager = GameManager.Instance;
+            if (gameManager == null)
+            {
+                Debug.Log("Game manager is null");
+                return;
+            }
+
+            CameraMan cameraMan = gameManager.cameraMan;
+            if (cameraMan == null)
+            {
+                Debug.Log("Camera man is null");
+                return;
+            }
+
+            if (cameraMan.bespokeCamera.Priority == 20)
+            {
+                Debug.Log("bespoke started");
+                return;
+            }
+            cameraMan.StartBespokeCode();
+            return;
+        }
+
         // save respawn point for later
         if (collider.TryGetComponent<RespawnPoint>(out RespawnPoint respawnPoint))
         {

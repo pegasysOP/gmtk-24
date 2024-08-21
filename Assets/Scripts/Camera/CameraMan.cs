@@ -10,11 +10,16 @@ public class CameraMan : MonoBehaviour
     public CinemachineVirtualCamera flyThroughVirtualCamera;
     public CinemachineVirtualCamera gameVirtualCamera;
     public CinemachineVirtualCamera noInputGameVirtualCamera;
+    public CinemachineVirtualCamera bespokeCamera;
 
     public Receptacle menuReceptacle;
 
     public GameObject introGameObj;
     public Animation introCamAnim;
+
+    public Animation bespokeAnim;
+    public GameObject wizard;
+    public Transform wizardChair;
 
     private bool allowInput = true;
     protected bool inMainMenu = true;
@@ -40,13 +45,13 @@ public class CameraMan : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
-        {
-            Debug.Log("straight to game");
-            mainMenuVirtualCamera.Priority = 8;
-            gameVirtualCamera.Priority = 12;
-            return;
-        }
+        //if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        //{
+        //    Debug.Log("straight to game");
+        //    mainMenuVirtualCamera.Priority = 8;
+        //    gameVirtualCamera.Priority = 12;
+        //    return;
+        //}
 
         if (menuReceptacle.IsCompleted())//Input.anyKeyDown)
         {
@@ -57,13 +62,13 @@ public class CameraMan : MonoBehaviour
             }
         }
 
-        else if (Input.GetKeyUp(KeyCode.B) && !inMainMenu)
-        {
-            Debug.Log("key up");
+        //else if (Input.GetKeyUp(KeyCode.B) && !inMainMenu)
+        //{
+        //    Debug.Log("key up");
 
-            EnableCameraInputReading(allowInput);
-            allowInput = !allowInput;
-        }
+        //    EnableCameraInputReading(allowInput);
+        //    allowInput = !allowInput;
+        //}
     }
 
     /// <summary>
@@ -174,5 +179,22 @@ public class CameraMan : MonoBehaviour
             Debug.Log("active cam = " + activeCam.Name + " input state unchanged");
             return;
         }
+    }
+
+    public void StartBespokeCode()
+    {
+        if (bespokeCamera == null || bespokeAnim == null)
+        {
+            return;
+        }
+        bespokeCamera.Priority = 20;
+        bespokeAnim.Play();
+
+        //if (wizard != null && wizardChair != null)
+        //{
+        //    wizard.transform.position = wizardChair.transform.position;
+        //    wizard.StopAllCoroutines();
+        //    wizard.splineAnimate.Pause();
+        //}
     }
 }
